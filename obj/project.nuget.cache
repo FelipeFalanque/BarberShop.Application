@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "MXenagaSeaJ8cGbV/GpdJ3kFv9hM/0DyxKIRzXCK/LB6liW6GuTReL4SXTKHCcHcH44SYxK5ZJNqWwFqliC3Wg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\falanque\\Documents\\Visual Studio 2022\\BarberShop.Application\\BarberShop.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\falanque\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+  ],
+  "logs": []
+}
