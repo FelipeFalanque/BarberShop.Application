@@ -1,0 +1,48 @@
+﻿@using BarberShop.Application.Models;
+@model NewLoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutClean.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/sign-in.css" rel="stylesheet" />
+}
+
+<main class="form-signin w-100 m-auto">
+    <form method="post">
+        <div class="grid text-center" style="--bs-rows: 3; --bs-columns: 3;">
+            <div></div>
+            <div class="g-start-2" style="grid-row: 2"><img class="mb-4 rounded-circle" src="~/imagens/logo.jpg" alt="logo" width="140px" height="140px" /></div>
+            <div class="g-start-3" style="grid-row: 3"></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <h1 class="h3 mb-3 fw-normal">Novo cadastro</h1>
+        </div>
+        <div class="form-floating mb-2">
+            @Html.TextBoxFor(f => f.Nome, new { @class = "form-control", autofocus = "", id = "nameInput", placeholder="Seu nome e sobrenome" })
+            <label for="nameInput">Nome</label>
+        </div>
+        <div class="form-floating mb-2">
+            @Html.TextBoxFor(f => f.Celular, new { @class = "form-control phone", id = "cellPhoneInput", maxlength="15", placeholder="19999999999" })
+            <label for="cellPhoneInput">Celular</label>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show mb-2" role="alert">
+            <strong>Atenção!</strong> <br/>Sua senha sera seu ano de nascimento. <br/>Preencha corretamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="form-floating mb-2">
+            @Html.TextBoxFor(f => f.AnoNascimento, new { @class = "form-control year", autofocus = "", id="yearOfBirthInput", placeholder="2002", maxlength="4" })
+            <label for="yearOfBirthInput">Ano de nascimento</label>
+        </div>
+        <small>
+            @Html.ValidationMessageFor(f => f.Nome, null, new { @class = "text-danger" })
+        </small>
+        <small>
+            @Html.ValidationMessageFor(f => f.AnoNascimento, null, new { @class = "text-danger" })
+        </small>
+        <button class="btn btn-success w-100 py-2" type="submit">Cadastrar</button>
+        <a class="btn btn-link" asp-area="" asp-controller="Auth" asp-action="Login">voltar</a>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017 – @DateTime.Now.Year </p>
+    </form>
+</main>

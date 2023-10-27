@@ -1,7 +1,34 @@
+
+using BarberShop.Application.BarberShop.Data.Repositories;
+using BarberShop.Application.BarberShop.Domain.Interfaces;
+using BarberShop.Application.BarberShop.Domain.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = new PathString("/Auth/Login");
+                options.LogoutPath = new PathString("/Auth/Logout");
+                options.AccessDeniedPath = new PathString("/Error/AccessDenied");
+                options.ExpireTimeSpan = TimeSpan.FromDays(180);
+                options.SlidingExpiration = true;
+            });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+});
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
@@ -18,6 +45,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

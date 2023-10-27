@@ -1,0 +1,29 @@
+﻿@using BarberShop.Application.Models;
+@model List<UserViewModel>
+
+<a class="btn btn-primary mb-2" asp-controller="Management" asp-action="CreateUser">Novo Cadastro</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            @foreach (UserViewModel user in Model)
+            {
+                <tr>
+                    
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Phone</td>
+                    <td><a class="btn btn-link" asp-controller="Management" asp-action="Details" asp-route-id="@user.Code">Detalhes</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/bin/Debug/net6.0
+/obj
+/.vs
+/.vs/BarberShop.Application/v17/*
+/.vs/BarberShop.Application/FileContentIndex/*
+/obj/Debug/net6.0/BarberShop.Application.GeneratedMSBuildEditorConfig.editorconfig
+/obj/Debug/net6.0/BarberShop.Application.GeneratedMSBuildEditorConfig.editorconfig
+/.vs/BarberShop.Application/FileContentIndex/efedd2a7-2f7e-45d0-b3ab-db906fad89af.vsidx
+/.vs/BarberShop.Application/v17/.suo

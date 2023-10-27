@@ -1,0 +1,58 @@
+﻿@using BarberShop.Application.Models;
+@model UserViewModel
+
+<form method="post">
+
+    @if (!string.IsNullOrEmpty(ViewBag.message))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Sucesso!</strong> Seus dados foram salvos com sucesso!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @Html.HiddenFor(f => f.Code)
+    <div class="mb-3">
+        <label for="inputName" class="form-label">Nome</label>
+        @Html.TextBoxFor(f => f.Name, new { @class = "form-control", autofocus = "", id = "inputName"})
+    </div>
+    <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email</label>
+        @Html.TextBoxFor(f => f.Email, new { @class = "form-control", id = "inputEmail"})
+    </div>
+    <div class="mb-3">
+        <label for="inputPhone" class="form-label">Celular</label>
+        @Html.TextBoxFor(f => f.Phone, new { @class = "form-control phone", id = "inputPhone", maxlength="15"})
+    </div>
+    <div class="mb-3">
+        <label for="inputRegistration" class="form-label">Data Cadastro</label>
+        @Html.TextBoxFor(f => f.RegistrationDate, new { @class = "form-control", id = "inputRegistration", disabled="true" })
+    </div>
+
+    <div class="card text-bg-success mb-2">
+        <h5 class="card-header">Adicionar Senha</h5>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="inputNewPassword" class="form-label"> Senha</label>
+                @Html.TextBoxFor(f => f.Password, new { @class = "form-control", id = "inputNewPassword", minlength="4", maxlength="10"})
+            </div>
+        </div>
+    </div>
+
+
+
+    <small>
+        @Html.ValidationMessageFor(f => f.Name, null, new { @class = "text-danger" })
+    </small>
+    <small>
+        @Html.ValidationMessageFor(f => f.Email, null, new { @class = "text-danger" })
+    </small>
+    <small>
+        @Html.ValidationMessageFor(f => f.Phone, null, new { @class = "text-danger" })
+    </small>
+
+    @if (string.IsNullOrEmpty(ViewBag.message))
+    {
+        <button type="submit" class="btn btn-success">Salvar</button>
+    }
+</form>
