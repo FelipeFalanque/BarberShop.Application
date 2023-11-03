@@ -11,8 +11,7 @@ namespace BarberShop.Application.Models
         [Required, StringLength(100)]
         public string Name { get; set; }
 
-        [Required, StringLength(100)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required, MinLength(15), MaxLength(15)]
         public string Phone { get; set; }
@@ -20,7 +19,7 @@ namespace BarberShop.Application.Models
         [Required, MinLength(4), MaxLength(4)]
         public string YearOfBirth { get; set; }
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         public string RegistrationDate { get; set; }
 

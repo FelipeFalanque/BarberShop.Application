@@ -43,9 +43,7 @@ namespace BarberShop.Application.BarberShop.Domain.Services
 
         public User GetByEmailOrPhone(string emailOrPhone)
         {
-            return _userRepository
-                .Get()
-                .First(u => u.Email == emailOrPhone || u.Phone == emailOrPhone);
+            return _userRepository.Get().FirstOrDefault(u => u.Email == emailOrPhone || u.Phone == emailOrPhone);
         }
     }
 }

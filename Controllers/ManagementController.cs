@@ -4,6 +4,7 @@ using BarberShop.Application.BarberShop.Domain.Interfaces;
 using BarberShop.Application.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BarberShop.Application.Controllers
 {
@@ -43,6 +44,7 @@ namespace BarberShop.Application.Controllers
                 userDB.Name = user.Name;
                 userDB.Phone = user.Phone;
                 userDB.Email = user.Email;
+                userDB.YearOfBirth = user.YearOfBirth;
 
                 if (!String.IsNullOrEmpty(user.Password))
                 {
@@ -71,6 +73,7 @@ namespace BarberShop.Application.Controllers
                 userDB.Name = user.Name;
                 userDB.Phone = user.Phone;
                 userDB.Email = user.Email;
+                userDB.YearOfBirth = user.YearOfBirth;
 
                 if (!String.IsNullOrEmpty(user.Password))
                 {

@@ -4,7 +4,11 @@
     {
         public string Code { get; set; }
 
+        public DateTime DateRegister { get; set; }
+
         public string Name { get; set; }
+
+        public bool Blocked { get; set; }
 
         public string Email { get; set; }
 
@@ -16,18 +20,17 @@
 
         public bool Administrator { get; set; }
 
-        public DateTime DateRegister { get; set; }
-
         public User()
         {
             Code = string.Empty;
+            DateRegister = DateTime.MinValue;
             Name = string.Empty;
+            Blocked = false;
             Email = string.Empty;
             Phone = string.Empty;
             YearOfBirth = string.Empty;
             Password = string.Empty;
             Administrator = false;
-            DateRegister = DateTime.MinValue;
         }
     }
 }

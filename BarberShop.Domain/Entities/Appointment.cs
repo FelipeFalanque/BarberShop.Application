@@ -1,0 +1,35 @@
+﻿namespace BarberShop.Application.BarberShop.Domain.Entities
+{
+    public class Appointment
+    {
+        public string Code { get; set; }
+
+        public DateTime DateRegister { get; set; }
+
+        public bool Canceled { get; set; }
+
+        public short Day { get; set; }
+
+        public short Month { get; set; }
+
+        public short Year { get; set; }
+
+        public short Hour { get; set; }
+
+        public short Minute { get; set; }
+
+        public string ClientCode { get; set; }
+
+        public Appointment()
+        {
+            Code = string.Empty;
+            DateRegister = DateTime.MinValue;
+            Day = 0;
+            Month = 0;
+            Year = 0;
+            Hour = 0;
+            Minute = 0;
+            ClientCode = string.Empty;
+        }
+    }
+}

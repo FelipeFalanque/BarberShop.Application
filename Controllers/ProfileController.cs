@@ -6,7 +6,8 @@ using System.Security.Claims;
 
 namespace BarberShop.Application.Controllers
 {
-    [Authorize(Policy = "Admin")]
+    // [Authorize(Policy = "Admin")]
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IUserService _userService;

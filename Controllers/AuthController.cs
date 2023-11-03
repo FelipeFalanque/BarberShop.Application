@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using BarberShop.Application.Models;
 using BarberShop.Application.BarberShop.Domain.Helpers;
+using BarberShop.Application.BarberShop.Domain.Entities;
 
 namespace BarberShop.Application.Controllers
 {
@@ -27,28 +28,28 @@ namespace BarberShop.Application.Controllers
         [HttpPost]
         public async Task<IActionResult> NewLogin(NewLoginViewModel newLogin)
         {
-            /*
-
-            var userDB = _userService.GetByEmailOrPhone(login.EmailOuCelular);
-
-            if (userDB == null)
-                ModelState.AddModelError("EmailOuCelular", "Email não encontrado.");
-            else
+            if (ModelState.IsValid)
             {
-                if (userDB.Password.DecodeFrom64() != login.Senha)
-                    ModelState.AddModelError("Senha", "Senha incorreta.");
-            }
+                User userDB = _userService.GetByEmailOrPhone(newLogin.Celular);
 
-            //Autenticar
-            if (userDB != null && ModelState.IsValid)
-            {
+                if (userDB == null)
+                {
+                    userDB = new User();
+                    userDB.Name = newLogin.Nome;
+                    userDB.Phone = newLogin.Celular;
+                    userDB.YearOfBirth = newLogin.AnoNascimento;
+                    userDB.Password = newLogin.AnoNascimento.EncodePasswordToBase64();
+
+                    _userService.Add(userDB);
+                }
+
                 //Defina pelo menos um conjunto de claims...
                 var claims = new List<Claim>
                 {
                     //Atributos do usuário ...
                     new Claim(ClaimTypes.Name, userDB.Name),
-                    new Claim(ClaimTypes.Role, userDB.Administrator ? "Admin" : "Comum"),
-                    new Claim(ClaimTypes.Email, userDB.Email),
+                    new Claim(ClaimTypes.Role, "Comum"),
+                    new Claim(ClaimTypes.MobilePhone, userDB.Phone),
                     new Claim(ClaimTypes.Hash, userDB.Code)
                 };
 
@@ -85,16 +86,8 @@ namespace BarberShop.Application.Controllers
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
-                // Segura url vazia e url imbutida (somente redireciona para urls do sistema)
-                if (!string.IsNullOrEmpty(login.ReturnURL) && Url.IsLocalUrl(login.ReturnURL))
-                {
-                    return Redirect(login.ReturnURL);
-                }
-
                 return RedirectToAction("Index", "Home");
             }
-
-            */
 
             return View(newLogin);
         }
@@ -128,7 +121,6 @@ namespace BarberShop.Application.Controllers
                     //Atributos do usuário ...
                     new Claim(ClaimTypes.Name, userDB.Name),
                     new Claim(ClaimTypes.Role, userDB.Administrator ? "Admin" : "Comum"),
-                    new Claim(ClaimTypes.Email, userDB.Email),
                     new Claim(ClaimTypes.Hash, userDB.Code)
                 };
 

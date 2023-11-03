@@ -22,11 +22,17 @@ function id(el) {
     return document.getElementById(el);
 }
 window.onload = function () {
-    const collection = document.getElementsByClassName("phone");
-    collection[0].onkeyup = function () {
+    const collectionPhone = document.getElementsByClassName("phone");
+    collectionPhone[0].onkeyup = function () {
         mascara(this, mtel);
     }
+
+    const collectionYear = document.getElementsByClassName("year");
+    collectionYear[0].onkeyup = function () {
+        mascaraYear(this, mtelYear);
+    }
 }
+
 //---------------------------------------------------------------------
 
 function mascaraYear(o, f) {
@@ -41,12 +47,5 @@ function mtelYear(v) {
     v = v.replace(/\D/g, ""); //Remove tudo o que não é dígito
     return v;
 }
-function id(el) {
-    return document.getElementById(el);
-}
-window.onload = function () {
-    const collection = document.getElementsByClassName("year");
-    collection[0].onkeyup = function () {
-        mascaraYear(this, mtelYear);
-    }
-}
+
+//---------------------------------------------------------------------
