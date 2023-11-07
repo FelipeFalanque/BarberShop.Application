@@ -2,12 +2,7 @@
 
 namespace BarberShop.Application.BarberShop.Domain.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        void Add(User user);
-        void Delete(User user);
-        void Edit(User user);
-        IEnumerable<User> Get();
-        User Get(string code);
     }
 }

@@ -32,7 +32,7 @@ namespace BarberShop.Application.BarberShop.Data.Repositories
 
         public User Get(string code)
         {
-            return UserDataBase.Users.First(x => x.Code == code);
+            return UserDataBase.Users.FirstOrDefault(x => x.Code == code);
         }
     }
 }

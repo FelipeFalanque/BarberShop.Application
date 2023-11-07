@@ -20,6 +20,8 @@
 
         public string ClientCode { get; set; }
 
+        public string Description { get; set; }
+
         public Appointment()
         {
             Code = string.Empty;
@@ -30,6 +32,7 @@
             Hour = 0;
             Minute = 0;
             ClientCode = string.Empty;
+            Description = string.Empty;
         }
     }
 }

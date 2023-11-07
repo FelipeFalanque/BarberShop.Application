@@ -1,6 +1,8 @@
 ﻿using BarberShop.Application.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using System.Diagnostics;
 
 namespace BarberShop.Application.Controllers
@@ -30,6 +32,21 @@ namespace BarberShop.Application.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Hours()
+        {
+            var resp = new List<AppointmentViewModel>();
+
+            DateTime date = new DateTime(2023, 11, 7, 8, 0, 0);
+
+            for (int i = 0; i < 20; i++)
+            {
+                resp.Add(new AppointmentViewModel(date));
+                date = date.AddMinutes(30);
+            }
+
+            return Ok(resp);
         }
     }
 }
