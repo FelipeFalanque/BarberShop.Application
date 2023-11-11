@@ -42,7 +42,7 @@ namespace BarberShop.Application.Controllers
                 var userDB = _userService.Get(user.Code);
 
                 userDB.Name = user.Name;
-                userDB.Phone = user.Phone;
+                userDB.Phone = Util.GetOnlyNumbers(userDB.Phone);
                 userDB.Email = user.Email;
                 userDB.YearOfBirth = user.YearOfBirth;
 
@@ -69,9 +69,17 @@ namespace BarberShop.Application.Controllers
         {
             if (user != null && ModelState.IsValid)
             {
-                User userDB = new User();
+                User userDB = _userService.GetByEmailOrPhone(Util.GetOnlyNumbers(user.Phone));
+
+                if (userDB != null)
+                {
+                    ModelState.AddModelError("Phone", "Celular em uso por outro cadastro.");
+                    return View(user);
+                }
+
+                userDB = new User();
                 userDB.Name = user.Name;
-                userDB.Phone = user.Phone;
+                userDB.Phone = Util.GetOnlyNumbers(user.Phone);
                 userDB.Email = user.Email;
                 userDB.YearOfBirth = user.YearOfBirth;
 

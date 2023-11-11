@@ -9,6 +9,8 @@ namespace BarberShop.Application.Models
 
         public string Day { get; set; }
 
+        public string DayText { get; set; }
+
         public string Month { get; set; }
 
         public string Year { get; set; }
@@ -20,6 +22,7 @@ namespace BarberShop.Application.Models
         public AppointmentViewModel(DateTime date)
         {
             Day = Util.GetTwoCharacters(date.Day);
+            DayText = date.DayOfWeek.ToString();
             Month = Util.GetTwoCharacters(date.Month);
             Year = date.Year.ToString();
             Hour = Util.GetTwoCharacters(date.Hour);

@@ -30,17 +30,22 @@ namespace BarberShop.Application.Controllers
         {
             if (ModelState.IsValid)
             {
-                User userDB = _userService.GetByEmailOrPhone(newLogin.Celular);
+                User userDB = _userService.GetByEmailOrPhone(Util.GetOnlyNumbers(newLogin.Celular));
 
                 if (userDB == null)
                 {
                     userDB = new User();
                     userDB.Name = newLogin.Nome;
-                    userDB.Phone = newLogin.Celular;
+                    userDB.Phone = Util.GetOnlyNumbers(newLogin.Celular);
                     userDB.YearOfBirth = newLogin.AnoNascimento;
                     userDB.Password = newLogin.AnoNascimento.EncodePasswordToBase64();
 
                     _userService.Add(userDB);
+                }
+                else
+                {
+                    ModelState.AddModelError("Celular", "Celular em uso por outro cadastro.");
+                    return View(newLogin);
                 }
 
                 //Defina pelo menos um conjunto de claims...
@@ -102,10 +107,10 @@ namespace BarberShop.Application.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
-            var userDB = _userService.GetByEmailOrPhone(login.EmailOuCelular);
+            var userDB = _userService.GetByEmailOrPhone(Util.GetOnlyNumbers(login.Celular));
 
             if (userDB == null)
-                ModelState.AddModelError("EmailOuCelular", "Email não encontrado.");
+                ModelState.AddModelError("Celular", "Celular não encontrado.");
             else
             {
                 if (userDB.Password.DecodeFrom64() != login.Senha)

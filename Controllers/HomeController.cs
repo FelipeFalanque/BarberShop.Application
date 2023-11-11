@@ -1,4 +1,5 @@
-﻿using BarberShop.Application.Models;
+﻿using BarberShop.Application.Business;
+using BarberShop.Application.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,17 +37,8 @@ namespace BarberShop.Application.Controllers
 
         public IActionResult Hours()
         {
-            var resp = new List<AppointmentViewModel>();
-
-            DateTime date = new DateTime(2023, 11, 7, 8, 0, 0);
-
-            for (int i = 0; i < 20; i++)
-            {
-                resp.Add(new AppointmentViewModel(date));
-                date = date.AddMinutes(30);
-            }
-
-            return Ok(resp);
+            var appointmentsVw = new Appointments().GetAppointments();
+            return Ok(appointmentsVw);
         }
     }
 }

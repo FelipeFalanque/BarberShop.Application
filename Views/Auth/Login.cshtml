@@ -20,12 +20,10 @@
             <h1 class="h3 mb-3 fw-normal">Informe seus dados</h1>
         </div>
         <div class="form-floating mb-2">
-            @* <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com OU 19999999999"> *@
-            @Html.TextBoxFor(f => f.EmailOuCelular, new { @class = "form-control", autofocus = "", id = "floatingInput", placeholder="name@example.com OU 19999999999" })
-            <label for="floatingInput">Email ou Celular</label>
+            @Html.TextBoxFor(f => f.Celular, new { @class = "form-control phone", autofocus = "", id = "cellPhoneInput", maxlength="15", placeholder="19999999999" })
+            <label for="cellPhoneInput">Celular</label>
         </div>
         <div class="form-floating mb-2">
-            @* <input type="password" class="form-control" id="floatingPassword" placeholder="****"> *@
             @Html.PasswordFor(f => f.Senha, new { @class = "form-control", autofocus = "", id="floatingPassword", placeholder="****" })
             <label for="floatingPassword">Senha</label>
         </div>
@@ -33,7 +31,7 @@
             <span class="mb-2 badge rounded-pill text-bg-warning">Dica de senha.  Ano de nascimento.</span>
         </div>
         <small>
-            @Html.ValidationMessageFor(f => f.EmailOuCelular, null, new { @class = "text-danger" })
+            @Html.ValidationMessageFor(f => f.Celular, null, new { @class = "text-danger" })
         </small>
         <small>
             @Html.ValidationMessageFor(f => f.Senha, null, new { @class = "text-danger" })

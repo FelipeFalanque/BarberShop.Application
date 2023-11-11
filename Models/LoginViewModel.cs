@@ -5,7 +5,7 @@ namespace BarberShop.Application.Models
     public class LoginViewModel
     {
         [Required, StringLength(100)]
-        public string EmailOuCelular { get; set; }
+        public string Celular { get; set; }
 
         [Required, StringLength(10)]
         public string Senha { get; set; }
@@ -16,7 +16,7 @@ namespace BarberShop.Application.Models
 
         public LoginViewModel()
         {
-            EmailOuCelular = string.Empty;
+            Celular = string.Empty;
             Senha = string.Empty;
             Relembrar = false;
             ReturnURL = string.Empty;

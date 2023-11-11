@@ -23,13 +23,17 @@ function id(el) {
 }
 window.onload = function () {
     const collectionPhone = document.getElementsByClassName("phone");
-    collectionPhone[0].onkeyup = function () {
-        mascara(this, mtel);
+    if (collectionPhone[0]) { 
+        collectionPhone[0].onkeyup = function () {
+            mascara(this, mtel);
+        }
     }
 
     const collectionYear = document.getElementsByClassName("year");
-    collectionYear[0].onkeyup = function () {
-        mascaraYear(this, mtelYear);
+    if (collectionYear[0]) { 
+        collectionYear[0].onkeyup = function () {
+            mascaraYear(this, mtelYear);
+        }
     }
 }
 
