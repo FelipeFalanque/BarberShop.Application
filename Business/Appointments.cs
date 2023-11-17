@@ -1,5 +1,6 @@
 ﻿using BarberShop.Application.BarberShop.Domain.Interfaces;
 using BarberShop.Application.Models;
+using Microsoft.VisualBasic;
 
 namespace BarberShop.Application.Business
 {
@@ -71,7 +72,7 @@ namespace BarberShop.Application.Business
             for (int i = 0;i < 20;i++)
             {
                 list.Add(new AppointmentViewModel(date));
-                date.AddMinutes(30);
+                date = date.AddMinutes(30);
             }
 
             return list;

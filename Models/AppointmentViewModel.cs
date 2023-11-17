@@ -22,7 +22,7 @@ namespace BarberShop.Application.Models
         public AppointmentViewModel(DateTime date)
         {
             Day = Util.GetTwoCharacters(date.Day);
-            DayText = date.DayOfWeek.ToString();
+            DayText = string.Format("{0} {1}/{2}", Util.GetDayOfWeekPTBR(date.DayOfWeek), Util.GetTwoCharacters(date.Day), Util.GetTwoCharacters(date.Month));
             Month = Util.GetTwoCharacters(date.Month);
             Year = date.Year.ToString();
             Hour = Util.GetTwoCharacters(date.Hour);
