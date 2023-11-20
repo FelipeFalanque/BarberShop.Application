@@ -8,10 +8,6 @@ namespace BarberShop.Application.Business
     {
         private readonly IAppointmentService _appointmentService;
 
-        public Appointments()
-        {
-        }
-
         public Appointments(IAppointmentService appointmentService)
         {
             _appointmentService = appointmentService;

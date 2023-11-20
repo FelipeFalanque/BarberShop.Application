@@ -39,20 +39,20 @@ function BindDay(list, day) {
         if (!(index % 2)) {
 
             if (leftOn) {
-                button = `<button class="btn btn-dark" type="button" onclick="openModalAppointment('${item.title}')">${item.title}</button>`;
+                button = `<button class="btn btn-dark" type="button" onclick="openModalAppointment('${item.title}', '${item.dayText}')">${item.title}</button>`;
             }
             else {
-                button = `<button class="btn btn-secondary" type="button" onclick="openModalAppointment('${item.title}')">${item.title}</button>`;
+                button = `<button class="btn btn-secondary" type="button" onclick="openModalAppointment('${item.title}', '${item.dayText}')">${item.title}</button>`;
             }
             leftOn = !leftOn;
             $("#day-" + day +"-left").append(button);
         }
         else {
             if (rightOn) {
-                button = `<button class="btn btn-secondary" type="button" onclick="openModalAppointment('${item.title}')">${item.title}</button>`;
+                button = `<button class="btn btn-secondary" type="button" onclick="openModalAppointment('${item.title}', '${item.dayText}')">${item.title}</button>`;
             }
             else {
-                button = `<button class="btn btn-dark" type="button" onclick="openModalAppointment('${item.title}')">${item.title}</button>`;
+                button = `<button class="btn btn-dark" type="button" onclick="openModalAppointment('${item.title}', '${item.dayText}')">${item.title}</button>`;
             }
             rightOn = !rightOn;
             $("#day-" + day +"-right").append(button);
@@ -62,9 +62,11 @@ function BindDay(list, day) {
 
 
 
-function openModalAppointment(text) {
+function openModalAppointment(textHour, textDay) {
     
-    $("#modalAppointmentLabel").text(text);
+    $("#modalAppointmentLabel").text(`Confirmar Agendamento`);
+
+    $("#modalAppointmentBodyLabel").text(`Quer confirmar o agendamento as ${textHour} na ${textDay} ?`);
 
     let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalAppointment')) // Returns a Bootstrap modal instance
     // Show or hide:

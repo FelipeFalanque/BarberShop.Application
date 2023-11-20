@@ -1,4 +1,5 @@
-﻿using BarberShop.Application.Business;
+﻿using BarberShop.Application.BarberShop.Domain.Interfaces;
+using BarberShop.Application.Business;
 using BarberShop.Application.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,12 @@ namespace BarberShop.Application.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IAppointmentService _appointmentService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IAppointmentService appointmentService)
         {
             _logger = logger;
+            _appointmentService = appointmentService;
         }
 
         public IActionResult Index()
@@ -37,7 +40,9 @@ namespace BarberShop.Application.Controllers
 
         public IActionResult Hours()
         {
-            var appointmentsVw = new Appointments().GetAppointments();
+            _logger.LogInformation("Home/Hours");
+
+            var appointmentsVw = new Appointments(_appointmentService).GetAppointments();
             return Ok(appointmentsVw);
         }
     }
