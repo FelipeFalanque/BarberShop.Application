@@ -69,34 +69,63 @@ function CreateAppointment() {
 
     const url = "/api/appointments";
 
-    let dataSend = {
-        "day" : 1,
-        "month" : 2,
-        "year" : 2023,
-        "hour" : 18,
-        "minute" : 30,
-        "observation" : "Jose Maria"
+
+    // Dados que você deseja enviar no corpo da solicitação
+    const dados = {
+        chave1: 'valor1',
+        chave2: 'valor2'
     };
 
-    var jqxhr = $.ajax({
-        type: "POST",
+    // Configuração da requisição
+    $.ajax({
+        type: 'POST',
         url: url,
-        data: "Text my JS",
-        //success: success,
-        dataType: "json",
-        success: function (resp) {
-            console.log(resp)
+        contentType: 'application/json',
+        data: JSON.stringify(dados),
+        success: function (response) {
+            console.log('Resposta do servidor:', response);
         },
-        error: function (error, errorInfo) {
-            console.log(error);
-            console.log(errorInfo);
+        error: function (error) {
+            console.error('Erro na requisição:', error);
         }
     });
 
-    jqxhr.done(function (resp) {
-        console.log("POST /api/appointments");
-        console.log(resp);
-    })
+
+    //let dataSend = {
+    //    "day" : 1,
+    //    "month" : 2,
+    //    "year" : 2023,
+    //    "hour" : 18,
+    //    "minute" : 30,
+    //    "observation" : "Jose Maria"
+    //};
+
+    //const data = {
+    //    Chave1: 'valor1',
+    //    Chave2: 'valor2'
+    //};
+
+
+    //var jqxhr = $.ajax({
+    //    type: "POST",
+    //    url: url,
+    //    data: { "Chave1": "Valor1", "Chave2": "Valor2" },
+    //    contentType: "application/json; charset=utf-8",
+    //    dataType: "json",
+    //    success: function (resp) {
+    //        console.log(resp)
+    //    },
+    //    error: function (error, errorInfo, errorInfo2) {
+    //        console.log(error);
+    //        console.log(errorInfo);
+    //        console.log(errorInfo2);
+    //    }
+    //});
+
+    //jqxhr.done(function (resp) {
+    //    console.log("POST /api/appointments");
+    //    console.log(resp);
+    //})
 }
 
 function OpenModalAppointment(textHour, textDay) {

@@ -33,10 +33,10 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
-builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
-{
-    build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
-}));
+//builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
+//{
+//    build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+//}));
 
 var app = builder.Build();
 
@@ -48,7 +48,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseCors("corspolicy");
+//app.UseCors("corspolicy");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

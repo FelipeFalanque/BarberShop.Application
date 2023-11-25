@@ -39,13 +39,25 @@ namespace BarberShop.Application.Controllers
             return Ok(appointmentsVw);
         }
 
-        [HttpPost("api/appointments")]
-        public IActionResult CreateProduct(string text)//(CreateAppointmentViewModel newAppointment)
+        [HttpPost]
+        public IActionResult Appointments([FromBody] ModelData data)//(CreateAppointmentViewModel newAppointment)
         {
 
             _logger.LogInformation("api/appointments/CreateProduct");
 
             return Ok();
+        }
+    }
+
+    public class ModelData
+    {
+        public string Chave1 { get; set; }
+
+        public string Chave2 { get; set; }
+
+        public ModelData()
+        {
+            
         }
     }
 }
