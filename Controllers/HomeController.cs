@@ -37,13 +37,5 @@ namespace BarberShop.Application.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public IActionResult Hours()
-        {
-            _logger.LogInformation("Home/Hours");
-
-            var appointmentsVw = new Appointments(_appointmentService).GetAppointments();
-            return Ok(appointmentsVw);
-        }
     }
 }

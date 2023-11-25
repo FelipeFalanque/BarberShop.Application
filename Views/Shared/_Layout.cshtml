@@ -4,12 +4,14 @@
 @inject IHttpContextAccessor httpContextAccessor
 @{
     string nameUser = string.Empty;
+    string role = string.Empty;
 
     if (httpContextAccessor.HttpContext != null &&
         httpContextAccessor.HttpContext.User != null &&
         httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name) != null)
     {
         nameUser = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+        role = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Role).Value;
     }
 }
 
@@ -70,6 +72,9 @@
             &copy; 2023 - BarberShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <input type="hidden" id="inputHiddenRole" name="inputHiddenRole" value="@role">
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
