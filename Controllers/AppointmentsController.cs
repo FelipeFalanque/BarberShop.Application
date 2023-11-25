@@ -43,6 +43,8 @@ namespace BarberShop.Application.Controllers
         public IActionResult CreateProduct(string text)//(CreateAppointmentViewModel newAppointment)
         {
 
+            _logger.LogInformation("api/appointments/CreateProduct");
+
             return Ok();
         }
     }
