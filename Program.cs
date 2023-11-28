@@ -2,6 +2,8 @@
 using BarberShop.Application.BarberShop.Data.Repositories;
 using BarberShop.Application.BarberShop.Domain.Interfaces;
 using BarberShop.Application.BarberShop.Domain.Services;
+using BarberShop.Application.Hubs;
+using BarberShop.Application.ServicesHubs;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
@@ -26,12 +28,18 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
 });
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+
+builder.Services.AddSignalR();  // Adicionando a configuração do SignalR
+
+builder.Services.AddScoped<IServiceAppointmentHub, ServiceAppointmentHub>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 //builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 //{
@@ -58,8 +66,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<AppointmentHub>("/appointmentHub");  // Adicionando a configuração do SignalR
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();

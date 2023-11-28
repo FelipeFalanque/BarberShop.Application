@@ -18,6 +18,10 @@ namespace BarberShop.Application.Models
 
         public string Observation { get; set; }
 
-
+        public string AppointmentCode { get
+            {
+                return this.Day + this.Month + this.Year + this.Hour + this.Minute;
+            }
+        }
     }
 }
