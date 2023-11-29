@@ -20,7 +20,12 @@ $(document).ready(function () {
 
     connection.on("ReceiveAppointmentConfirmed", function (appointmentCode) {
         // Lógica para exibir a mensagem recebida
-        console.log("Lógica para exibir a mensagem recebida - " + appointmentCode);
+        console.log("Codigo recebido do servidor " + appointmentCode);
+
+        $(`#${appointmentCode}`).removeClass('btn-dark');
+        $(`#${appointmentCode}`).removeClass('btn-secondary');
+        $(`#${appointmentCode}`).addClass('btn-danger');
+        $(`#${appointmentCode}`).addClass('disabled');
     });
 
     connection.start().catch(function (err) {

@@ -49,7 +49,7 @@ namespace BarberShop.Application.Controllers
             _logger.LogInformation("api/appointments/CreateProduct");
 
             // Envie uma mensagem para os clientes conectados
-            await _serviceAppointmentHub.SendAppointmentConfirmedAllClients("VEIO DO SERVER " + newAppointment.AppointmentCode);
+            await _serviceAppointmentHub.SendAppointmentConfirmedAllClients(newAppointment.AppointmentCode);
 
 
             return Ok();
