@@ -19,8 +19,11 @@ namespace BarberShop.Application.Models
 
         public string Minute { get; set; }
 
+        public bool Available { get; set; } = true;
+
         public AppointmentViewModel(DateTime date)
         {
+            Available = true;
             Day = Util.GetTwoCharacters(date.Day);
             DayText = string.Format("{0} {1}/{2}", Util.GetDayOfWeekPTBR(date.DayOfWeek), Util.GetTwoCharacters(date.Day), Util.GetTwoCharacters(date.Month));
             Month = Util.GetTwoCharacters(date.Month);

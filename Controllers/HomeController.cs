@@ -13,13 +13,9 @@ namespace BarberShop.Application.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IAppointmentService _appointmentService;
-
-        public HomeController(ILogger<HomeController> logger, IAppointmentService appointmentService)
+        public HomeController()
         {
-            _logger = logger;
-            _appointmentService = appointmentService;
+
         }
 
         public IActionResult Index()

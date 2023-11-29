@@ -1,4 +1,5 @@
 ﻿using BarberShop.Application.BarberShop.Domain.Interfaces;
+using BarberShop.Application.BarberShop.Domain.Services;
 using BarberShop.Application.Models;
 using Microsoft.VisualBasic;
 
@@ -63,11 +64,25 @@ namespace BarberShop.Application.Business
 
         private List<AppointmentViewModel> GetAppointmentsViewModel(DateTime date)
         {
+            //TODO  
+            var appointmentsBD = _appointmentService.Get();
+
             var list = new List<AppointmentViewModel>();
 
             for (int i = 0;i < 20;i++)
             {
-                list.Add(new AppointmentViewModel(date));
+                AppointmentViewModel appointment = new AppointmentViewModel(date);
+
+                if (appointmentsBD.Any( a => a.Day == date.Day &&
+                                        a.Hour == date.Hour &&
+                                        a.Minute == date.Minute &&
+                                        a.Canceled == false))
+                {
+                    appointment.Available = false;
+                }
+
+                list.Add(appointment);
+
                 date = date.AddMinutes(30);
             }
 

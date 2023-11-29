@@ -1,13 +1,21 @@
-﻿using BarberShop.Application.BarberShop.Domain.Entities;
+﻿using BarberShop.Application.BarberShop.Data.Repositories;
+using BarberShop.Application.BarberShop.Domain.Entities;
 using BarberShop.Application.BarberShop.Domain.Interfaces;
 
 namespace BarberShop.Application.BarberShop.Domain.Services
 {
     public class AppointmentService : IAppointmentService
     {
+        private readonly IAppointmentRepository _appointmentRepository;
+
+        public AppointmentService(IAppointmentRepository appointmentRepository)
+        {
+            _appointmentRepository = appointmentRepository;
+        }
+
         public void Add(Appointment appointment)
         {
-            throw new NotImplementedException();
+            _appointmentRepository.Add(appointment);
         }
 
         public void Delete(Appointment appointment)
@@ -22,22 +30,17 @@ namespace BarberShop.Application.BarberShop.Domain.Services
 
         public IEnumerable<Appointment> Get()
         {
-            throw new NotImplementedException();
+            return _appointmentRepository.Get();
         }
 
         public Appointment Get(string code)
         {
-            throw new NotImplementedException();
+            return _appointmentRepository.Get(code);
         }
 
         public IEnumerable<Appointment> GetByClientCode(string clientCode)
         {
-            throw new NotImplementedException();
-        }
-
-        public object GetAppointments()
-        {
-            return new object { };
+            return _appointmentRepository.Get();
         }
     }
 }

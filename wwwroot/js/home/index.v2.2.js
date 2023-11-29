@@ -80,7 +80,13 @@ function BindDay(list, day) {
             else {
                 button = `<button class="btn btn-secondary" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute) }" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')">${item.title}</button>`;
             }
+
             leftOn = !leftOn;
+
+            if (!item.available) {
+                button = `<button class="btn btn-danger disabled" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" >${item.title}</button>`;
+            }
+
             $("#day-" + day +"-left").append(button);
         }
         else {
@@ -90,7 +96,13 @@ function BindDay(list, day) {
             else {
                 button = `<button class="btn btn-dark" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute) }" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')">${item.title}</button>`;
             }
+
             rightOn = !rightOn;
+
+            if (!item.available) {
+                button = `<button class="btn btn-danger disabled" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" >${item.title}</button>`;
+            }
+
             $("#day-" + day +"-right").append(button);
         }
     });

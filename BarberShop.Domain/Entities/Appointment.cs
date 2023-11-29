@@ -4,7 +4,7 @@
     {
         public string Code { get; set; }
 
-        public DateTime DateRegister { get; set; }
+        public DateTime DateRegister { get; set; } = DateTime.Now;
 
         public bool Canceled { get; set; }
 
@@ -25,7 +25,7 @@
         public Appointment()
         {
             Code = string.Empty;
-            DateRegister = DateTime.MinValue;
+            DateRegister = DateTime.Now;
             Day = 0;
             Month = 0;
             Year = 0;
