@@ -1,4 +1,6 @@
-﻿namespace BarberShop.Application.BarberShop.Domain.Helpers
+﻿using System.Numerics;
+
+namespace BarberShop.Application.BarberShop.Domain.Helpers
 {
     public static class Util
     {
@@ -11,6 +13,11 @@
         public static string GetOnlyNumbers(string text)
         {
             return String.Join("", System.Text.RegularExpressions.Regex.Split(text, @"[^\d]"));
+        }        
+        
+        public static string GetFormattedPhone(string unformattedPhone)
+        {
+            return long.Parse(unformattedPhone).ToString(@"(00) 00000-0000"); // (49) 98807-0405
         }
         
         public static string GetDayOfWeekPTBR(DayOfWeek dayOfWeek)

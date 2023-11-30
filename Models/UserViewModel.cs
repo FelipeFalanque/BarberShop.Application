@@ -1,4 +1,5 @@
 ﻿using BarberShop.Application.BarberShop.Domain.Entities;
+using BarberShop.Application.BarberShop.Domain.Helpers;
 using System.ComponentModel.DataAnnotations;
 
 namespace BarberShop.Application.Models
@@ -39,7 +40,7 @@ namespace BarberShop.Application.Models
             Code = userDB.Code;
             Name = userDB.Name;
             Email = userDB.Email;
-            Phone = userDB.Phone;
+            Phone = Util.GetFormattedPhone(userDB.Phone);
             YearOfBirth = userDB.YearOfBirth;
             Password = string.Empty;
             RegistrationDate = userDB.DateRegister.ToString("dd/MM/yyyy");

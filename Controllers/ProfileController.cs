@@ -1,4 +1,5 @@
-﻿using BarberShop.Application.BarberShop.Domain.Interfaces;
+﻿using BarberShop.Application.BarberShop.Domain.Helpers;
+using BarberShop.Application.BarberShop.Domain.Interfaces;
 using BarberShop.Application.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,12 @@ namespace BarberShop.Application.Controllers
     public class ProfileController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IAppointmentService _appointmentService;
 
-        public ProfileController(IUserService userService)
+        public ProfileController(IUserService userService, IAppointmentService appointmentService)
         {
             _userService = userService;
+            _appointmentService = appointmentService;
         }
 
         public IActionResult Profile()
@@ -23,7 +26,9 @@ namespace BarberShop.Application.Controllers
             string code = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Hash).Value;
             var userDB = _userService.Get(code);
 
-            return View(new UserViewModel(userDB));
+            var userVM = new UserViewModel(userDB);
+
+            return View(userVM);
         }
 
         [HttpPost]
@@ -36,7 +41,7 @@ namespace BarberShop.Application.Controllers
                 var userDB = _userService.Get(user.Code);
 
                 userDB.Name = user.Name;
-                userDB.Phone = user.Phone;
+                // userDB.Phone = Util.GetOnlyNumbers(user.Phone);
                 userDB.Email = user.Email;
 
                 _userService.Edit(userDB);
@@ -49,6 +54,13 @@ namespace BarberShop.Application.Controllers
             }
 
             return View(user);
+        }
+
+        public IActionResult MyAppointments()
+        {
+            var appointments = _appointmentService.Get().Select(i => new AppointmentViewModel(i)).ToList();
+
+            return View(appointments);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BarberShop.Application.BarberShop.Domain.Helpers;
+﻿using BarberShop.Application.BarberShop.Domain.Entities;
+using BarberShop.Application.BarberShop.Domain.Helpers;
 using Microsoft.VisualBasic;
 
 namespace BarberShop.Application.Models
@@ -33,7 +34,19 @@ namespace BarberShop.Application.Models
 
             Title = String.Concat(Hour, ":", Minute);
         }
-        
+
+        public AppointmentViewModel(Appointment appointmentDB)
+        {
+            Available = !appointmentDB.Canceled;
+            Day = Util.GetTwoCharacters(appointmentDB.Day);
+            DayText = string.Format("{0} {1}/{2}", Util.GetDayOfWeekPTBR(appointmentDB.DateRegister.DayOfWeek), Util.GetTwoCharacters(appointmentDB.DateRegister.Day), Util.GetTwoCharacters(appointmentDB.DateRegister.Month));
+            Month = Util.GetTwoCharacters(appointmentDB.Month);
+            Year = appointmentDB.Year.ToString();
+            Hour = Util.GetTwoCharacters(appointmentDB.Hour);
+            Minute = Util.GetTwoCharacters(appointmentDB.Minute);
+
+            Title = String.Concat(Hour, ":", Minute);
+        }
 
     }
 }
