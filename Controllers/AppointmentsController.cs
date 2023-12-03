@@ -30,14 +30,14 @@ namespace BarberShop.Application.Controllers
         [HttpGet]
         public IActionResult Appointments()
         {
-            var appointmentsVw = new Appointments(_appointmentService).GetAppointments();
+            var appointmentsVw = new AppointmentsBusiness(_appointmentService).GetAppointments();
             return Ok(appointmentsVw);
         }
 
         [HttpGet("{id}")]
         public IActionResult Appointments(string id)
         {
-            var appointmentsVw = new Appointments(_appointmentService).GetAppointments();
+            var appointmentsVw = new AppointmentsBusiness(_appointmentService).GetAppointments();
             return Ok(appointmentsVw);
         }
 
@@ -47,6 +47,7 @@ namespace BarberShop.Application.Controllers
 
             _logger.LogInformation("api/appointments [HttpPost]");
 
+            // TODO : Obter pelo codigo view, e nao cancelado
             var oldAppointment = _appointmentService.Get(newAppointment.AppointmentCode);
 
             if (oldAppointment == null)

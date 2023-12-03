@@ -1,14 +1,14 @@
 ﻿@using BarberShop.Application.Models;
 @model List<AppointmentViewModel>
 
-<a class="btn btn-primary mb-2" asp-controller="Management" asp-action="CreateUser">Novo Cadastro</a>
+<a class="btn btn-primary mb-2" asp-area="" asp-controller="Home" asp-action="Index">Novo Agendamento</a>
 
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Celular</th>
-            <th scope="col">Cadastro</th>
+            <th scope="col">Dia</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Cancelado</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -18,8 +18,13 @@
             {
                 <tr>
                     <td>@appointment.DayText</td>
-                    <td>@appointment.Hour</td>
-                    <td>@appointment.Minute</td>
+                    <td>@appointment.Hour : @appointment.Minute</td>
+                    <td>
+                        @{
+                            if (appointment.Available) { <b class="text-success">Nao</b> }
+                            else { <b class="text-danger">Sim</b> }
+                        }
+                    </td>
                     <td><a class="btn btn-link" asp-controller="Management" asp-action="Details" asp-route-id="@appointment.Day">Detalhes</a></td>
                 </tr>
             }

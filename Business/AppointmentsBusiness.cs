@@ -5,11 +5,11 @@ using Microsoft.VisualBasic;
 
 namespace BarberShop.Application.Business
 {
-    public class Appointments
+    public class AppointmentsBusiness
     {
         private readonly IAppointmentService _appointmentService;
 
-        public Appointments(IAppointmentService appointmentService)
+        public AppointmentsBusiness(IAppointmentService appointmentService)
         {
             _appointmentService = appointmentService;
         }
@@ -64,7 +64,7 @@ namespace BarberShop.Application.Business
 
         private List<AppointmentViewModel> GetAppointmentsViewModel(DateTime date)
         {
-            //TODO  
+            //TODO : Trazar somente agendamentos do dia em questao.
             var appointmentsBD = _appointmentService.Get();
 
             var list = new List<AppointmentViewModel>();

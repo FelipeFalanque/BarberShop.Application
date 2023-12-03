@@ -29,7 +29,7 @@ namespace BarberShop.Application.Models
         {
             Appointment appointment = new Appointment();
 
-            appointment.Code = this.AppointmentCode;
+            appointment.CodeView = this.AppointmentCode;
             appointment.Day = Convert.ToInt16(this.Day);
             appointment.Month = Convert.ToInt16(this.Month);
             appointment.Year = Convert.ToInt16(this.Year);

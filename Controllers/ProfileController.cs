@@ -58,7 +58,13 @@ namespace BarberShop.Application.Controllers
 
         public IActionResult MyAppointments()
         {
-            var appointments = _appointmentService.Get().Select(i => new AppointmentViewModel(i)).ToList();
+            var claims = HttpContext.User.Claims;
+            string code = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Hash).Value;
+
+            // TODO: Uma busca que retorna somente itens da pessoa logada
+            var allAppointments = _appointmentService.Get().Where(a => a.ClientCode == code).ToList();
+
+            var appointments = allAppointments.Select(i => new AppointmentViewModel(i)).ToList();
 
             return View(appointments);
         }

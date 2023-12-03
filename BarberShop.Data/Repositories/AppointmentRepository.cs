@@ -11,6 +11,7 @@ namespace BarberShop.Application.BarberShop.Data.Repositories
 
         public void Add(Appointment appointment)
         {
+            appointment.Code = Guid.NewGuid().ToString();
             AppointmentDataBase.Appointments.Add(appointment);
         }
 

@@ -94,5 +94,15 @@ namespace BarberShop.Application.Controllers
 
             return View(user);
         }
+
+        public IActionResult Packages()
+        {
+            return View();
+        }
+
+        public IActionResult CreatePackages()
+        {
+            return View();
+        }
     }
 }
