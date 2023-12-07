@@ -10,5 +10,6 @@ namespace BarberShop.Application.BarberShop.Domain.Interfaces
         IEnumerable<Appointment> Get();
         Appointment Get(string code);
         IEnumerable<Appointment> GetByClientCode(string clientCode);
+        bool IsAvailable(string virtualCode);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BarberShop.Application.BarberShop.Domain.Entities;
 using BarberShop.Application.BarberShop.Domain.Helpers;
 using Microsoft.VisualBasic;
+using System;
 
 namespace BarberShop.Application.Models
 {
@@ -22,8 +23,11 @@ namespace BarberShop.Application.Models
 
         public bool Available { get; set; } = true;
 
+        public string Code { get; set; }
+
         public AppointmentViewModel(DateTime date)
         {
+            Code = string.Empty;
             Available = true;
             Day = Util.GetTwoCharacters(date.Day);
             DayText = string.Format("{0} {1}/{2}", Util.GetDayOfWeekPTBR(date.DayOfWeek), Util.GetTwoCharacters(date.Day), Util.GetTwoCharacters(date.Month));
@@ -37,9 +41,10 @@ namespace BarberShop.Application.Models
 
         public AppointmentViewModel(Appointment appointmentDB)
         {
+            Code = appointmentDB.Code;
             Available = !appointmentDB.Canceled;
             Day = Util.GetTwoCharacters(appointmentDB.Day);
-            DayText = string.Format("{0} {1}/{2}", Util.GetDayOfWeekPTBR(appointmentDB.DateRegister.DayOfWeek), Util.GetTwoCharacters(appointmentDB.DateRegister.Day), Util.GetTwoCharacters(appointmentDB.DateRegister.Month));
+            DayText = string.Format("{0} {1}/{2}", Util.GetDayOfWeekPTBR((new DateTime(appointmentDB.Year, appointmentDB.Month, appointmentDB.Day)).DayOfWeek), Util.GetTwoCharacters(appointmentDB.Day), Util.GetTwoCharacters(appointmentDB.Month));
             Month = Util.GetTwoCharacters(appointmentDB.Month);
             Year = appointmentDB.Year.ToString();
             Hour = Util.GetTwoCharacters(appointmentDB.Hour);

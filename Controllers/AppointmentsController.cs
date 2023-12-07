@@ -47,10 +47,7 @@ namespace BarberShop.Application.Controllers
 
             _logger.LogInformation("api/appointments [HttpPost]");
 
-            // TODO : Obter pelo codigo view, e nao cancelado
-            var oldAppointment = _appointmentService.Get(newAppointment.AppointmentCode);
-
-            if (oldAppointment == null)
+            if (_appointmentService.IsAvailable(newAppointment.AppointmentCode))
             {
                 var claims = HttpContext.User.Claims;
                 string code = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Hash).Value;
@@ -66,6 +63,22 @@ namespace BarberShop.Application.Controllers
 
 
             return Ok();
+        }
+
+        [HttpPost("/api/appointments/cancel")]
+        public IActionResult Cancel([FromBody] string code)
+        {
+
+            var appointment = _appointmentService.Get(code);
+
+            if (appointment != null)
+            {
+                appointment.Canceled = true;
+
+                _appointmentService.Edit(appointment);
+            }
+
+            return Ok("Sucesso");
         }
     }
 }

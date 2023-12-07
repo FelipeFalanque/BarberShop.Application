@@ -3,7 +3,8 @@
     public class Appointment
     {
         public string Code { get; set; }
-        public string CodeView { get; set; }
+
+        public string VirtualCode { get; set; }
 
         public DateTime DateRegister { get; set; } = DateTime.Now;
 
@@ -26,7 +27,7 @@
         public Appointment()
         {
             Code = string.Empty;
-            CodeView = string.Empty;
+            VirtualCode = string.Empty;
             DateRegister = DateTime.Now;
             Day = 0;
             Month = 0;

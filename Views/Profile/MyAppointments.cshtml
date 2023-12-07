@@ -21,13 +21,37 @@
                     <td>@appointment.Hour : @appointment.Minute</td>
                     <td>
                         @{
-                            if (appointment.Available) { <b class="text-success">Nao</b> }
-                            else { <b class="text-danger">Sim</b> }
+                            if (appointment.Available)
+                            {
+                                <span class="text-success" id="txt_@appointment.Code">Não</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger" id="txt_@appointment.Code">Sim</span>
+                            }
                         }
                     </td>
-                    <td><a class="btn btn-link" asp-controller="Management" asp-action="Details" asp-route-id="@appointment.Day">Detalhes</a></td>
+                    <td>
+                        @{
+                            if (appointment.Available)
+                            {
+                                <button type="button" onclick="Cancel('@appointment.Code')" class="btn btn-danger btn-sm" id="btn_@appointment.Code">Cancelar</button>
+                            }
+                            else
+                            {
+                                <button type="button" onclick="Cancel('@appointment.Code')" class="btn btn-secondary btn-sm" id="btn_@appointment.Code" disabled>Cancelar</button>
+                            }
+                        }
+                    </td>
                 </tr>
             }
         }
     </tbody>
 </table>
+
+
+
+@section Scripts
+{
+    <script src="~/js/profile/profile.myappointments.v1.0.js"></script>
+}

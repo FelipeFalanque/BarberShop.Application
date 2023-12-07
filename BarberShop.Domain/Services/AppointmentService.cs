@@ -25,7 +25,7 @@ namespace BarberShop.Application.BarberShop.Domain.Services
 
         public void Edit(Appointment appointment)
         {
-            throw new NotImplementedException();
+            _appointmentRepository.Edit(appointment);
         }
 
         public IEnumerable<Appointment> Get()
@@ -36,6 +36,13 @@ namespace BarberShop.Application.BarberShop.Domain.Services
         public Appointment Get(string code)
         {
             return _appointmentRepository.Get(code);
+        }
+
+        public bool IsAvailable(string virtualCode)
+        {
+            var appointments = _appointmentRepository.Get();
+            bool notAvailable = appointments.Any(x => x.VirtualCode == virtualCode && x.Canceled == false);
+            return !notAvailable;
         }
 
         public IEnumerable<Appointment> GetByClientCode(string clientCode)
