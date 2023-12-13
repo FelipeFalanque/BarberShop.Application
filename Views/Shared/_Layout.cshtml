@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BarberShop</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BarberShop.Application.styles.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
@@ -64,7 +65,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
-                                    <a class="dropdown-item text-dark" asp-area="" asp-controller="Management" asp-action="Home">Horários Funcionemento</a>
+                                    <a class="dropdown-item text-dark" asp-area="" asp-controller="Management" asp-action="DayWork">Horários Funcionemento</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">

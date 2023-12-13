@@ -12,10 +12,12 @@ namespace BarberShop.Application.Controllers
     public class ManagementController : Controller
     {
         private readonly IUserService _userService;
+        private readonly ISettingsService _settingsService;
 
-        public ManagementController(IUserService userService)
+        public ManagementController(IUserService userService, ISettingsService settingsService)
         {
             _userService = userService;
+            _settingsService = settingsService;
         }
         public IActionResult Home()
         {
@@ -104,5 +106,13 @@ namespace BarberShop.Application.Controllers
         {
             return View();
         }
+
+        public IActionResult DayWork()
+        {
+            var settingsDays = _settingsService.GetByType(TypeSettings.DayWork);
+
+            return View(settingsDays.Select(i => new SettingsDayWorkViewModel(i)).ToList());
+        }
+
     }
 }

@@ -1,0 +1,66 @@
+﻿@using BarberShop.Application.Models;
+@model List<SettingsDayWorkViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Dia</th>
+            <th scope="col">Inicio</th>
+            <th scope="col">Último</th>
+            <th scope="col"><i class="bi bi-calendar-event"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            @foreach (SettingsDayWorkViewModel settings in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" onclick="OpenModalAppointment()" class="btn btn-link text-dark"><i class="bi bi-pencil-square"></i></a>
+                    </td>
+                    <td>@settings.Description</td>
+                    <td>@settings.Start</td>
+                    <td>@settings.End</td>
+                    <td>
+                        @{
+                            if (settings.Open)
+                            {
+                                <b class="text-success" id="txt_@settings.Code">ABERTO</b>
+                            }
+                            else
+                            {
+                                <b class="text-danger" id="txt_@settings.Code">FECHADO</b>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAppointment" tabindex="-1" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalAppointmentLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="fs-2" id="modalAppointmentBodyLabel"></p>
+                <input id="inputCliente" class="form-control form-control-lg" type="text" placeholder="Agendamento para ...">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="ConfirmButton()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/management/management.daywork.v1.0.js"></script>
+}

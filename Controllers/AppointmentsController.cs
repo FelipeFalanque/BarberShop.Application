@@ -1,4 +1,5 @@
-﻿using BarberShop.Application.BarberShop.Domain.Entities;
+﻿using BarberShop.Application.BarberShop.Data.Repositories;
+using BarberShop.Application.BarberShop.Domain.Entities;
 using BarberShop.Application.BarberShop.Domain.Interfaces;
 using BarberShop.Application.BarberShop.Domain.Services;
 using BarberShop.Application.Business;
@@ -18,26 +19,28 @@ namespace BarberShop.Application.Controllers
     {
         private readonly ILogger<AppointmentsController> _logger;
         private readonly IAppointmentService _appointmentService;
+        private readonly ISettingsRepository _settingsRepository;
         private readonly IServiceAppointmentHub _serviceAppointmentHub;
 
-        public AppointmentsController(ILogger<AppointmentsController> logger, IAppointmentService appointmentService, IServiceAppointmentHub serviceAppointmentHub)
+        public AppointmentsController(ILogger<AppointmentsController> logger, IAppointmentService appointmentService, ISettingsRepository settingsRepository, IServiceAppointmentHub serviceAppointmentHub)
         {
             _logger = logger;
             _appointmentService = appointmentService;
+            _settingsRepository = settingsRepository;
             _serviceAppointmentHub = serviceAppointmentHub;
         }
 
         [HttpGet]
         public IActionResult Appointments()
         {
-            var appointmentsVw = new AppointmentsBusiness(_appointmentService).GetAppointments();
+            var appointmentsVw = new AppointmentsBusiness(_appointmentService, _settingsRepository).GetAppointments();
             return Ok(appointmentsVw);
         }
 
         [HttpGet("{id}")]
         public IActionResult Appointments(string id)
         {
-            var appointmentsVw = new AppointmentsBusiness(_appointmentService).GetAppointments();
+            var appointmentsVw = new AppointmentsBusiness(_appointmentService, _settingsRepository).GetAppointments();
             return Ok(appointmentsVw);
         }
 

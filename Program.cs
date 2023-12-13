@@ -37,6 +37,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<ISettingsRepository, SettingsRepository>();
+builder.Services.AddScoped<ISettingsService, SettingsServices>();
 
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

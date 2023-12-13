@@ -26,6 +26,9 @@ $(document).ready(function () {
         $(`#${appointmentCode}`).removeClass('btn-secondary');
         $(`#${appointmentCode}`).addClass('btn-danger');
         $(`#${appointmentCode}`).addClass('disabled');
+
+        $(`#calendar-x-${appointmentCode}`).show();
+ 
     });
 
     connection.start().catch(function (err) {
@@ -75,32 +78,32 @@ function BindDay(list, day) {
         if (!(index % 2)) {
 
             if (leftOn) {
-                button = `<button class="btn btn-dark" type="button" id="${ "".concat(item.day, item.month, item.year, item.hour, item.minute) }" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')">${item.title}</button>`;
+                button = `<button class="btn btn-dark" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')"><i class="bi bi-calendar-x" style="display: none;" id="calendar-x-${"".concat(item.day, item.month, item.year, item.hour, item.minute)}"></i> ${item.title}</button>`;
             }
             else {
-                button = `<button class="btn btn-secondary" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute) }" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')">${item.title}</button>`;
+                button = `<button class="btn btn-secondary" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')"><i class="bi bi-calendar-x" style="display: none;" id="calendar-x-${"".concat(item.day, item.month, item.year, item.hour, item.minute)}"></i> ${item.title}</button>`;
             }
 
             leftOn = !leftOn;
 
             if (!item.available) {
-                button = `<button class="btn btn-danger disabled" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" >${item.title}</button>`;
+                button = `<button class="btn btn-danger disabled" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}"><i class="bi bi-calendar-x"></i> ${item.title}</button>`;
             }
 
             $("#day-" + day +"-left").append(button);
         }
         else {
             if (rightOn) {
-                button = `<button class="btn btn-secondary" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute) }" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')">${item.title}</button>`;
+                button = `<button class="btn btn-secondary" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')"><i class="bi bi-calendar-x" style="display: none;" id="calendar-x-${"".concat(item.day, item.month, item.year, item.hour, item.minute)}"></i> ${item.title}</button>`;
             }
             else {
-                button = `<button class="btn btn-dark" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute) }" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')">${item.title}</button>`;
+                button = `<button class="btn btn-dark" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" onclick="OpenModalAppointment('${item.day}', '${item.month}', '${item.year}', '${item.hour}', '${item.minute}', '${item.dayText}')"><i class="bi bi-calendar-x" style="display: none;" id="calendar-x-${"".concat(item.day, item.month, item.year, item.hour, item.minute)}"></i> ${item.title}</button>`;
             }
 
             rightOn = !rightOn;
 
             if (!item.available) {
-                button = `<button class="btn btn-danger disabled" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}" >${item.title}</button>`;
+                button = `<button class="btn btn-danger disabled" type="button" id="${"".concat(item.day, item.month, item.year, item.hour, item.minute)}"><i class="bi bi-calendar-x"></i> ${item.title}</button>`;
             }
 
             $("#day-" + day +"-right").append(button);
