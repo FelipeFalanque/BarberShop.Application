@@ -17,20 +17,20 @@
             {
                 <tr>
                     <td>
-                        <a href="javascript:void(0);" onclick="OpenModalAppointment()" class="btn btn-link text-dark"><i class="bi bi-pencil-square"></i></a>
+                        <a href="javascript:void(0);" onclick="OpenModalDayWork('@settings.Code','@settings.Description.ToUpper()','@settings.Start','@settings.End', @settings.Open.ToString().ToLower())" class="btn btn-link text-dark"><i class="bi bi-pencil-square"></i></a>
                     </td>
                     <td>@settings.Description</td>
-                    <td>@settings.Start</td>
-                    <td>@settings.End</td>
+                    <td id="txtOpen_@settings.Code">@settings.Start</td>
+                    <td id="txtClose_@settings.Code">@settings.End</td>
                     <td>
                         @{
                             if (settings.Open)
                             {
-                                <b class="text-success" id="txt_@settings.Code">ABERTO</b>
+                                <b class="text-success" id="txtOpenClose_@settings.Code">ABERTO</b>
                             }
                             else
                             {
-                                <b class="text-danger" id="txt_@settings.Code">FECHADO</b>
+                                <b class="text-danger" id="txtOpenClose_@settings.Code">FECHADO</b>
                             }
                         }
                     </td>
@@ -41,16 +41,59 @@
 </table>
 
 <!-- Modal -->
-<div class="modal fade" id="modalAppointment" tabindex="-1" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+<div class="modal fade" id="modalDayWork" tabindex="-1" aria-labelledby="modalDayWorkLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalAppointmentLabel">Modal title</h1>
+                <h2 class="modal-title fs-5" id="modalDayWorkLabel">Configuração de funcionamento</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="fs-2" id="modalAppointmentBodyLabel"></p>
-                <input id="inputCliente" class="form-control form-control-lg" type="text" placeholder="Agendamento para ...">
+                <p class="fs-2" id="modalDayWorkBodyLabel"> modalDayWorkBodyLabel </p>
+
+                <div class="mb-3">
+                    <label for="selectStartHour" class="col-form-label">Horário primeiro atendimento</label>
+                    <select class="form-select form-select-sm" id="selectStartHour">
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="selectLastHour" class="col-form-label">Horário último atendimento</label>
+                    <select class="form-select form-select-sm" id="selectLastHour">
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                    </select>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioOpenClose" id="radioOpen">
+                    <label class="form-check-label text-success fw-bold" for="radioOpen">
+                        ABERTO 
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioOpenClose" id="radioClose" checked>
+                    <label class="form-check-label text-danger fw-bold" for="radioClose">
+                        FECHADO
+                    </label>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
