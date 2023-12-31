@@ -1,10 +1,7 @@
-﻿using BarberShop.Application.BarberShop.Data.Repositories;
-using BarberShop.Application.BarberShop.Domain.Entities;
+﻿using BarberShop.Application.BarberShop.Domain.Entities;
+using BarberShop.Application.BarberShop.Domain.Helpers;
 using BarberShop.Application.BarberShop.Domain.Interfaces;
-using BarberShop.Application.BarberShop.Domain.Services;
 using BarberShop.Application.Models;
-using Microsoft.VisualBasic;
-using System.Collections.Generic;
 
 namespace BarberShop.Application.Business
 {
@@ -46,22 +43,25 @@ namespace BarberShop.Application.Business
                 }
                 else
                 {
+                    TimeSpan timeSpanStart = Util.ParseTimeString(configDay.Start);
+                    TimeSpan timeSpanEnd = Util.ParseTimeString(configDay.End);
+
                     switch (dayCurrent)
                     {
                         case 1:
-                            dayOne = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, 8, 0, 0), appointmentsBD);
+                            dayOne = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, timeSpanStart.Hours, 0, 0), appointmentsBD, timeSpanEnd);
                             break;
                         case 2:
-                            dayTwo = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, 8, 0, 0), appointmentsBD);
+                            dayTwo = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, timeSpanStart.Hours, 0, 0), appointmentsBD, timeSpanEnd);
                             break;
                         case 3:
-                            dayThree = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, 8, 0, 0), appointmentsBD);
+                            dayThree = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, timeSpanStart.Hours, 0, 0), appointmentsBD, timeSpanEnd);
                             break;
                         case 4:
-                            dayFour = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, 8, 0, 0), appointmentsBD);
+                            dayFour = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, timeSpanStart.Hours, 0, 0), appointmentsBD, timeSpanEnd);
                             break;
                         case 5:
-                            dayFive = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, 8, 0, 0), appointmentsBD);
+                            dayFive = GetAppointmentsViewModel(new DateTime(dateBase.Year, dateBase.Month, dateBase.Day, timeSpanStart.Hours, 0, 0), appointmentsBD, timeSpanEnd);
                             break;
                     }
 
@@ -73,11 +73,11 @@ namespace BarberShop.Application.Business
             return new { dayOne, dayTwo, dayThree, dayFour, dayFive };
         }
 
-        private List<AppointmentViewModel> GetAppointmentsViewModel(DateTime date, IEnumerable<Appointment> appointmentsBD)
+        private List<AppointmentViewModel> GetAppointmentsViewModel(DateTime date, IEnumerable<Appointment> appointmentsBD, TimeSpan lastTime)
         {
             var list = new List<AppointmentViewModel>();
 
-            for (int i = 0;i < 20;i++)
+            while (date.TimeOfDay <= lastTime)
             {
                 AppointmentViewModel appointment = new AppointmentViewModel(date);
 

@@ -16,6 +16,11 @@ namespace BarberShop.Application.Models
 
         public string Description { get; set; }
 
+        public SettingsDayWorkViewModel()
+        {
+            
+        }
+
         public SettingsDayWorkViewModel(Settings settingsDB)
         {
             this.Code = settingsDB.Code;

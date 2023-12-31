@@ -54,5 +54,24 @@ namespace BarberShop.Application.BarberShop.Domain.Helpers
 
             return dayOfWeekPTBR;
         }
+
+        public static TimeSpan ParseTimeString(string timeString)
+        {
+            // Dividindo a string em horas e minutos
+            string[] timeComponents = timeString.Split(':');
+
+            if (timeComponents.Length == 2 && int.TryParse(timeComponents[0], out int hours) && int.TryParse(timeComponents[1], out int minutes))
+            {
+                // Criando um TimeSpan com as horas e minutos
+                return new TimeSpan(hours, minutes, 0);
+            }
+            else
+            {
+                // Se a string não estiver no formato esperado, lança uma exceção ou retorna um valor padrão
+                throw new ArgumentException("A string de tempo não está no formato esperado (HH:mm).");
+                // ou
+                // return TimeSpan.Zero; // ou outro valor padrão
+            }
+        }
     }
 }

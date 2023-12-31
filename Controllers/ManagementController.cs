@@ -1,6 +1,7 @@
 ﻿using BarberShop.Application.BarberShop.Domain.Entities;
 using BarberShop.Application.BarberShop.Domain.Helpers;
 using BarberShop.Application.BarberShop.Domain.Interfaces;
+using BarberShop.Application.BarberShop.Domain.Services;
 using BarberShop.Application.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -111,7 +112,34 @@ namespace BarberShop.Application.Controllers
         {
             var settingsDays = _settingsService.GetByType(TypeSettings.DayWork);
 
-            return View(settingsDays.Select(i => new SettingsDayWorkViewModel(i)).ToList());
+            // Creating a custom list of weekdays in the desired order
+            List<string> weekdaysOrder = new List<string>
+            {
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            };
+
+            // Sorting the list of objects based on the custom order of weekdays
+            var sortedList = settingsDays.OrderBy(e => weekdaysOrder.IndexOf(e.Identifier)).ToList();
+
+            return View(sortedList.Select(i => new SettingsDayWorkViewModel(i)).ToList());
+        }
+
+        [HttpPost]
+        [Route("/api/management/setdaywork")]
+        public IActionResult SetDayWork([FromBody] SettingsDayWorkViewModel settingsDay)
+        {
+            var dayDB = _settingsService.Get(settingsDay.Code);
+
+            if (dayDB != null)
+            {
+                dayDB.Start = settingsDay.Start;
+                dayDB.End = settingsDay.End;
+                dayDB.Value = settingsDay.Open.ToString();
+
+                _settingsService.Edit(dayDB);
+            }
+
+            return Ok("Sucesso");
         }
 
     }

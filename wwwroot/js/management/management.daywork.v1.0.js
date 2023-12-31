@@ -43,4 +43,31 @@ function ConfirmButton() {
     $(`#txtOpen_${code}`).text(selectStartHour);
     $(`#txtClose_${code}`).text(selectLastHour);
 
+    const url = "/api/management/setdaywork";
+
+    let objToSend = {
+        "Code": code,
+        "Start": selectStartHour,
+        "End": selectLastHour,
+        "Day": "",
+        "Open": isOpenSelected,
+        "Description": ""
+    };
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(objToSend),  // Envia objeto
+        success: function (data) {
+
+            console.log('Resposta do Backend:', data);
+            let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalDayWork')) // Returns a Bootstrap modal instance
+            modal.hide();
+        },
+        error: function (error) {
+            console.error('Erro:', error);
+        }
+    });
+
 }
