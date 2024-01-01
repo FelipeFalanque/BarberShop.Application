@@ -4,9 +4,9 @@ namespace BarberShop.Application.BarberShop.Domain.Interfaces
 {
     public interface IService <TEntity> where TEntity : class
     {
-        void Add(TEntity user);
-        void Delete(TEntity user);
-        void Edit(TEntity user);
+        void Add(TEntity entity);
+        void Delete(TEntity entity);
+        void Edit(TEntity entity);
         IEnumerable<TEntity> Get();
         TEntity Get(string code);
     }

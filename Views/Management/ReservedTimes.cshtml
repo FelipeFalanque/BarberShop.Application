@@ -1,0 +1,272 @@
+﻿<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link nav-link-black text-dark active" id="nav-day-one-tab" data-bs-toggle="tab" data-bs-target="#nav-day-one" type="button" role="tab" aria-controls="nav-day-one" aria-selected="true"><span id="day-one-text">Segunda</span></button>
+        <button class="nav-link nav-link-black text-dark" id="nav-day-two-tab" data-bs-toggle="tab" data-bs-target="#nav-day-two" type="button" role="tab" aria-controls="nav-day-two" aria-selected="false"><span id="day-two-text">Terça</span></button>
+        <button class="nav-link nav-link-black text-dark" id="nav-day-three-tab" data-bs-toggle="tab" data-bs-target="#nav-day-three" type="button" role="tab" aria-controls="nav-day-three" aria-selected="false"><span id="day-three-text">Quarta</span></button>
+        <button class="nav-link nav-link-black text-dark" id="nav-day-four-tab" data-bs-toggle="tab" data-bs-target="#nav-day-four" type="button" role="tab" aria-controls="nav-day-four" aria-selected="false"><span id="day-four-text">Quinta</span></button>
+        <button class="nav-link nav-link-black text-dark" id="nav-day-five-tab" data-bs-toggle="tab" data-bs-target="#nav-day-five" type="button" role="tab" aria-controls="nav-day-five" aria-selected="false"><span id="day-five-text">Sexta</span></button>
+        <button class="nav-link nav-link-black text-dark" id="nav-day-six-tab" data-bs-toggle="tab" data-bs-target="#nav-day-six" type="button" role="tab" aria-controls="nav-day-six" aria-selected="false"><span id="day-six-text">Sábado</span></button>
+        <button class="nav-link nav-link-black text-dark" id="nav-day-seven-tab" data-bs-toggle="tab" data-bs-target="#nav-day-seven" type="button" role="tab" aria-controls="nav-day-seven" aria-selected="false"><span id="day-seven-text">Domingo</span></button>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-day-one" role="tabpanel" aria-labelledby="nav-day-one-tab" tabindex="0">
+        <div class="container text-center" id="day-one">
+            <div class="row mt-2">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">Horário </th>
+                                <th scope="col">Pessoa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                DateTime startTime = DateTime.Parse("08:00");
+                                DateTime endTime = DateTime.Parse("22:00");
+
+                                for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
+                                {
+                                    <tr>
+                                        <td><button type="button" class="btn btn-link" onclick="OpenModalDayWork('','Segunda','@currentTime.ToString("HH:mm")')">Reservar</button></td>
+                                        <td>@currentTime.ToString("HH:mm")</td>
+                                        <td><b class="text-success">LIVRE</b></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-day-two" role="tabpanel" aria-labelledby="nav-day-two-tab" tabindex="0">
+        <div class="container text-center" id="day-two">
+            <div class="row mt-2">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">Horário </th>
+                                <th scope="col">Pessoa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                startTime = DateTime.Parse("08:00");
+                                endTime = DateTime.Parse("22:00");
+
+                                for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
+                                {
+                                    <tr>
+                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td>@currentTime.ToString("HH:mm")</td>
+                                        <td><b class="text-success">LIVRE</b></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-day-three" role="tabpanel" aria-labelledby="nav-day-three-tab" tabindex="0">
+        <div class="container text-center" id="day-three">
+            <div class="row mt-2">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">Horário </th>
+                                <th scope="col">Pessoa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                startTime = DateTime.Parse("08:00");
+                                endTime = DateTime.Parse("22:00");
+
+                                for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
+                                {
+                                    <tr>
+                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td>@currentTime.ToString("HH:mm")</td>
+                                        <td><b class="text-success">LIVRE</b></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-day-four" role="tabpanel" aria-labelledby="nav-day-four-tab" tabindex="0">
+        <div class="container text-center" id="day-four">
+            <div class="row mt-2">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">Horário </th>
+                                <th scope="col">Pessoa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                startTime = DateTime.Parse("08:00");
+                                endTime = DateTime.Parse("22:00");
+
+                                for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
+                                {
+                                    <tr>
+                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td>@currentTime.ToString("HH:mm")</td>
+                                        <td><b class="text-success">LIVRE</b></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-day-five" role="tabpanel" aria-labelledby="nav-day-five-tab" tabindex="0">
+        <div class="container text-center" id="day-five">
+            <div class="row mt-2">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">Horário </th>
+                                <th scope="col">Pessoa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                startTime = DateTime.Parse("08:00");
+                                endTime = DateTime.Parse("22:00");
+
+                                for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
+                                {
+                                    <tr>
+                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td>@currentTime.ToString("HH:mm")</td>
+                                        <td><b class="text-success">LIVRE</b></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-day-six" role="tabpanel" aria-labelledby="nav-day-six-tab" tabindex="0">
+        <div class="container text-center" id="day-six">
+            <div class="row mt-2">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">Horário </th>
+                                <th scope="col">Pessoa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                startTime = DateTime.Parse("08:00");
+                                endTime = DateTime.Parse("22:00");
+
+                                for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
+                                {
+                                    <tr>
+                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td>@currentTime.ToString("HH:mm")</td>
+                                        <td id=""><b class="text-success">LIVRE</b></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-day-seven" role="tabpanel" aria-labelledby="nav-day-seven-tab" tabindex="0">
+        <div class="container text-center" id="day-seven">
+            <div class="row mt-2">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">Horário </th>
+                                <th scope="col">Pessoa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                startTime = DateTime.Parse("08:00");
+                                endTime = DateTime.Parse("22:00");
+
+                                for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
+                                {
+                                    <tr>
+                                        <td><button type="button" class="btn btn-link" onclick="OpenModalDayWork('','Domingo','@currentTime.ToString("HH:mm")')">Reservar</button></td>
+                                        <td>@currentTime.ToString("HH:mm")</td>
+                                        <td><b class="text-success">LIVRE</b></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalReservedTime" tabindex="-1" aria-labelledby="modalReservedTimeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="modalReservedTimeLabel">Reservar Hórario</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="fs-2" id="modalReservedTimeBodyLabel"> modalReservedTimeBodyLabel </p>
+
+                <div class="mb-2">
+                    <label for="textHour" class="col-form-label">Horário</label>
+                    <input class="form-control" type="text" id="textHour" disabled>
+                </div>
+
+                <div class="mb-2">
+                    <label for="textPerson" class="col-form-label">Pessoa</label>
+                    <input class="form-control" type="text" id="textPerson" maxlength="50">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="ConfirmButton()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/management/management.reservedtime.v1.0.js"></script>
+}
