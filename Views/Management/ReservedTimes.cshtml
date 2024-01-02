@@ -30,9 +30,9 @@
                                 for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
                                 {
                                     <tr>
-                                        <td><button type="button" class="btn btn-link" onclick="OpenModalDayWork('','Segunda','@currentTime.ToString("HH:mm")')">Reservar</button></td>
+                                        <td id="dayOneBtn-@currentTime.ToString("HHmm")"><button type="button" class="btn btn-link" onclick="OpenModalDayWork('dayOne', 'Segunda','@currentTime.ToString("HH:mm")')">Reservar</button></td>
                                         <td>@currentTime.ToString("HH:mm")</td>
-                                        <td><b class="text-success">LIVRE</b></td>
+                                        <td id="dayOnePerson-@currentTime.ToString("HHmm")"><b class="text-success">LIVRE</b></td>
                                     </tr>
                                 }
                             }
@@ -255,6 +255,7 @@
                 <div class="mb-2">
                     <label for="textPerson" class="col-form-label">Pessoa</label>
                     <input class="form-control" type="text" id="textPerson" maxlength="50">
+                    <div id="textPersonHelp" class="form-text text-danger" style="display:none">insira o nome da pessoa para a qual o horário está sendo reservado.</div>
                 </div>
 
             </div>
@@ -268,5 +269,5 @@
 
 @section Scripts
 {
-    <script src="~/js/management/management.reservedtime.v1.0.js"></script>
+    <script src="~/js/management/management.reservedtime.v1.1.js"></script>
 }
