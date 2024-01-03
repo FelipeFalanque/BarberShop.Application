@@ -73,5 +73,57 @@ namespace BarberShop.Application.BarberShop.Domain.Helpers
                 // return TimeSpan.Zero; // ou outro valor padrão
             }
         }
+
+        public static string ConvertDayOfWeekEnglishToPortuguese(string dayInEnglish)
+        {
+            // Mapping between day names in English and Portuguese
+            Dictionary<string, string> dayMapping = new Dictionary<string, string>
+            {
+                { "Monday", "Segunda" },
+                { "Tuesday", "Terça" },
+                { "Wednesday", "Quarta" },
+                { "Thursday", "Quinta" },
+                { "Friday", "Sexta" },
+                { "Saturday", "Sábado" },
+                { "Sunday", "Domingo" }
+            };
+
+            // Try to get the Portuguese equivalent
+            if (dayMapping.TryGetValue(dayInEnglish, out string dayInPortuguese))
+            {
+                return dayInPortuguese;
+            }
+            else
+            {
+                // Return a default message if no match is found
+                return "Day not found";
+            }
+        }
+
+        public static string ConvertDayOfWeekPortugueseToEnglish(string dayInPortuguese)
+        {
+            // Reverse mapping between day names in Portuguese and English
+            Dictionary<string, string> reverseDayMapping = new Dictionary<string, string>
+            {
+                { "Segunda", "Monday" },
+                { "Terça", "Tuesday" },
+                { "Quarta", "Wednesday" },
+                { "Quinta", "Thursday" },
+                { "Sexta", "Friday" },
+                { "Sábado", "Saturday" },
+                { "Domingo", "Sunday" }
+            };
+
+            // Try to get the English equivalent
+            if (reverseDayMapping.TryGetValue(dayInPortuguese, out string dayInEnglish))
+            {
+                return dayInEnglish;
+            }
+            else
+            {
+                // Return a default message if no match is found
+                return "Day not found";
+            }
+        }
     }
 }

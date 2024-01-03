@@ -11,13 +11,13 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-day-one" role="tabpanel" aria-labelledby="nav-day-one-tab" tabindex="0">
-        <div class="container text-center" id="day-one">
+        <div class="container" id="day-one">
             <div class="row mt-2">
                 <div class="col">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
                                 <th scope="col">Horário </th>
                                 <th scope="col">Pessoa</th>
                             </tr>
@@ -43,13 +43,13 @@
         </div>
     </div>
     <div class="tab-pane fade" id="nav-day-two" role="tabpanel" aria-labelledby="nav-day-two-tab" tabindex="0">
-        <div class="container text-center" id="day-two">
+        <div class="container" id="day-two">
             <div class="row mt-2">
                 <div class="col">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
                                 <th scope="col">Horário </th>
                                 <th scope="col">Pessoa</th>
                             </tr>
@@ -62,9 +62,9 @@
                                 for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
                                 {
                                     <tr>
-                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td id="dayTwoBtn-@currentTime.ToString("HHmm")"><button type="button" class="btn btn-link" onclick="OpenModalDayWork('dayTwo', 'Terça','@currentTime.ToString("HH:mm")')">Reservar</button></td>
                                         <td>@currentTime.ToString("HH:mm")</td>
-                                        <td><b class="text-success">LIVRE</b></td>
+                                        <td id="dayTwoPerson-@currentTime.ToString("HHmm")"><b class="text-success">LIVRE</b></td>
                                     </tr>
                                 }
                             }
@@ -75,13 +75,13 @@
         </div>
     </div>
     <div class="tab-pane fade" id="nav-day-three" role="tabpanel" aria-labelledby="nav-day-three-tab" tabindex="0">
-        <div class="container text-center" id="day-three">
+        <div class="container" id="day-three">
             <div class="row mt-2">
                 <div class="col">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
                                 <th scope="col">Horário </th>
                                 <th scope="col">Pessoa</th>
                             </tr>
@@ -94,9 +94,9 @@
                                 for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
                                 {
                                     <tr>
-                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td id="dayThreeBtn-@currentTime.ToString("HHmm")"><button type="button" class="btn btn-link" onclick="OpenModalDayWork('dayThree', 'Quarta','@currentTime.ToString("HH:mm")')">Reservar</button></td>
                                         <td>@currentTime.ToString("HH:mm")</td>
-                                        <td><b class="text-success">LIVRE</b></td>
+                                        <td id="dayThreePerson-@currentTime.ToString("HHmm")"><b class="text-success">LIVRE</b></td>
                                     </tr>
                                 }
                             }
@@ -107,13 +107,13 @@
         </div>
     </div>
     <div class="tab-pane fade" id="nav-day-four" role="tabpanel" aria-labelledby="nav-day-four-tab" tabindex="0">
-        <div class="container text-center" id="day-four">
+        <div class="container" id="day-four">
             <div class="row mt-2">
                 <div class="col">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
                                 <th scope="col">Horário </th>
                                 <th scope="col">Pessoa</th>
                             </tr>
@@ -126,9 +126,9 @@
                                 for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
                                 {
                                     <tr>
-                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td id="dayFourBtn-@currentTime.ToString("HHmm")"><button type="button" class="btn btn-link" onclick="OpenModalDayWork('dayFour', 'Quinta','@currentTime.ToString("HH:mm")')">Reservar</button></td>
                                         <td>@currentTime.ToString("HH:mm")</td>
-                                        <td><b class="text-success">LIVRE</b></td>
+                                        <td id="dayFourPerson-@currentTime.ToString("HHmm")"><b class="text-success">LIVRE</b></td>
                                     </tr>
                                 }
                             }
@@ -139,13 +139,13 @@
         </div>
     </div>
     <div class="tab-pane fade" id="nav-day-five" role="tabpanel" aria-labelledby="nav-day-five-tab" tabindex="0">
-        <div class="container text-center" id="day-five">
+        <div class="container" id="day-five">
             <div class="row mt-2">
                 <div class="col">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
                                 <th scope="col">Horário </th>
                                 <th scope="col">Pessoa</th>
                             </tr>
@@ -158,9 +158,9 @@
                                 for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
                                 {
                                     <tr>
-                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td id="dayFiveBtn-@currentTime.ToString("HHmm")"><button type="button" class="btn btn-link" onclick="OpenModalDayWork('dayFive', 'Sexta','@currentTime.ToString("HH:mm")')">Reservar</button></td>
                                         <td>@currentTime.ToString("HH:mm")</td>
-                                        <td><b class="text-success">LIVRE</b></td>
+                                        <td id="dayFivePerson-@currentTime.ToString("HHmm")"><b class="text-success">LIVRE</b></td>
                                     </tr>
                                 }
                             }
@@ -171,13 +171,13 @@
         </div>
     </div>
     <div class="tab-pane fade" id="nav-day-six" role="tabpanel" aria-labelledby="nav-day-six-tab" tabindex="0">
-        <div class="container text-center" id="day-six">
+        <div class="container" id="day-six">
             <div class="row mt-2">
                 <div class="col">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
                                 <th scope="col">Horário </th>
                                 <th scope="col">Pessoa</th>
                             </tr>
@@ -190,9 +190,9 @@
                                 for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
                                 {
                                     <tr>
-                                        <td><button type="button" class="btn btn-link">Reservar</button></td>
+                                        <td id="daySixBtn-@currentTime.ToString("HHmm")"><button type="button" class="btn btn-link" onclick="OpenModalDayWork('daySix', 'Sábado','@currentTime.ToString("HH:mm")')">Reservar</button></td>
                                         <td>@currentTime.ToString("HH:mm")</td>
-                                        <td id=""><b class="text-success">LIVRE</b></td>
+                                        <td id="daySixPerson-@currentTime.ToString("HHmm")"><b class="text-success">LIVRE</b></td>
                                     </tr>
                                 }
                             }
@@ -203,13 +203,13 @@
         </div>
     </div>
     <div class="tab-pane fade" id="nav-day-seven" role="tabpanel" aria-labelledby="nav-day-seven-tab" tabindex="0">
-        <div class="container text-center" id="day-seven">
+        <div class="container" id="day-seven">
             <div class="row mt-2">
                 <div class="col">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><i class="bi bi-calendar-event"></i></th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
                                 <th scope="col">Horário </th>
                                 <th scope="col">Pessoa</th>
                             </tr>
@@ -222,9 +222,9 @@
                                 for (DateTime currentTime = startTime; currentTime <= endTime; currentTime = currentTime.AddMinutes(30))
                                 {
                                     <tr>
-                                        <td><button type="button" class="btn btn-link" onclick="OpenModalDayWork('','Domingo','@currentTime.ToString("HH:mm")')">Reservar</button></td>
+                                        <td id="daySevenBtn-@currentTime.ToString("HHmm")"><button type="button" class="btn btn-link" onclick="OpenModalDayWork('daySeven', 'Domingo','@currentTime.ToString("HH:mm")')">Reservar</button></td>
                                         <td>@currentTime.ToString("HH:mm")</td>
-                                        <td><b class="text-success">LIVRE</b></td>
+                                        <td id="daySevenPerson-@currentTime.ToString("HHmm")"><b class="text-success">LIVRE</b></td>
                                     </tr>
                                 }
                             }

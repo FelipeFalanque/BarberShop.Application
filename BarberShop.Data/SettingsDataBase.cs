@@ -69,6 +69,20 @@ namespace BarberShop.Application.BarberShop.Data
                 Identifier = DayOfWeek.Sunday.ToString(),
                 TypeSettings = TypeSettings.DayWork,
                 Value = false.ToString()
+            },
+            new Settings() {
+                Code = "1228477a-cd70-4863-aec8-ee6bf0484459",
+                Description = "Antonio Carlos",
+                Start = "13:00",
+                Identifier = DayOfWeek.Tuesday.ToString(),
+                TypeSettings = TypeSettings.ReservedTimes,
+            },
+            new Settings() {
+                Code = "1228477a-cd70-4863-aec8-ee6bf0484460",
+                Description = "Jose Maria",
+                Start = "10:30",
+                Identifier = DayOfWeek.Wednesday.ToString(),
+                TypeSettings = TypeSettings.ReservedTimes,
             }
         };
     }

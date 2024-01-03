@@ -1,14 +1,14 @@
 ﻿@using BarberShop.Application.Models;
 @model List<SettingsDayWorkViewModel>
 
-<table class="table table-bordered">
+<table class="table">
     <thead>
         <tr>
-            <th scope="col"></th>
+            <th scope="col">&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar-event"></i></th>
             <th scope="col">Dia</th>
             <th scope="col">Inicio</th>
             <th scope="col">Último</th>
-            <th scope="col"><i class="bi bi-calendar-event"></i></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
             {
                 <tr>
                     <td>
-                        <a href="javascript:void(0);" onclick="OpenModalDayWork('@settings.Code','@settings.Description.ToUpper()','@settings.Start','@settings.End', @settings.Open.ToString().ToLower())" class="btn btn-link text-dark"><i class="bi bi-pencil-square"></i></a>
+                        <button type="button" class="btn btn-link" onclick="OpenModalDayWork('@settings.Code','@settings.Description.ToUpper()','@settings.Start','@settings.End', @settings.Open.ToString().ToLower())">Ajustar</button>
                     </td>
                     <td>@settings.Description</td>
                     <td id="txtOpen_@settings.Code">@settings.Start</td>

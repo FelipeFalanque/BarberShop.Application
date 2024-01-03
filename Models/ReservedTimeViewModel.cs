@@ -1,4 +1,5 @@
 ﻿using BarberShop.Application.BarberShop.Domain.Entities;
+using BarberShop.Application.BarberShop.Domain.Helpers;
 
 namespace BarberShop.Application.Models
 {
@@ -6,7 +7,7 @@ namespace BarberShop.Application.Models
     {
         public string Code { get; set; }
 
-        public string Start { get; set; }
+        public string Hour { get; set; }
 
         public string Day { get; set; }
 
@@ -20,8 +21,8 @@ namespace BarberShop.Application.Models
         public ReservedTimeViewModel(Settings settingsDB)
         {
             this.Code = settingsDB.Code;
-            this.Start = settingsDB.Start;
-            this.Day = settingsDB.Identifier;
+            this.Hour = settingsDB.Start;
+            this.Day = Util.ConvertDayOfWeekEnglishToPortuguese(settingsDB.Identifier);
             this.Description = settingsDB.Description;
         }
     }
