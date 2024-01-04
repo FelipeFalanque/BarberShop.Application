@@ -4,7 +4,7 @@ var selectedDay = null;
 var selectedHour = null;
 $(document).ready(function () {
 
-    const url = "/api/management/reservedtimes";
+    const url = "/api/management/getreservedtimes";
 
     $.ajax({
         url: url,
@@ -13,7 +13,6 @@ $(document).ready(function () {
         success: function (data) {
             if (data.length > 0) {
                 data.forEach(function (elemento) {
-                    console.log(elemento);
 
                     selectedDay = ConvertDayToValue(elemento.day);
                     selectedHour = elemento.hour.replace(":", "");
@@ -64,20 +63,14 @@ function ConfirmButton() {
 
     let idClientBtn = `#${selectedDay}Btn-${selectedHour}`;
     let idClientPerson = `#${selectedDay}Person-${selectedHour}`;
-
     let dayWeek = $("#modalReservedTimeBodyLabel").text();
 
-    $(idClientBtn).html(`<button type="button" class="btn btn-link" onclick="VacateTime('','${idClientBtn}','${idClientPerson}','${selectedDay}','${dayWeek}','${textHour}')">Disponibilizar</button>`);
-    $(idClientPerson).html(`<b class="text-primary">${textPerson}</b>`);
-
-    let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalReservedTime')) // Returns a Bootstrap modal instance
-    modal.hide();
-
-    const url = "/api/management/setdaywork";
+    const url = "/api/management/createreservedtime";
     
     let objToSend = {
-        "Code": code,
-        "Start": selectStartHour
+        "Hour": textHour,
+        "Day": dayWeek,
+        "Description": textPerson
     };
     
     $.ajax({
@@ -86,10 +79,14 @@ function ConfirmButton() {
         contentType: 'application/json',
         data: JSON.stringify(objToSend),  // Envia objeto
         success: function (data) {
-    
-            console.log('Resposta do Backend:', data);
-            let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalDayWork')) // Returns a Bootstrap modal instance
+
+            let code = data;
+            $(idClientBtn).html(`<button type="button" class="btn btn-link" onclick="VacateTime('${code}','${idClientBtn}','${idClientPerson}','${selectedDay}','${dayWeek}','${textHour}')">Disponibilizar</button>`);
+            $(idClientPerson).html(`<b class="text-primary">${textPerson}</b>`);
+
+            let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalReservedTime')) // Returns a Bootstrap modal instance
             modal.hide();
+
         },
         error: function (error) {
             console.error('Erro:', error);
@@ -100,8 +97,24 @@ function ConfirmButton() {
 
 function VacateTime(code, idClientBtn, idClientPerson, dayNumber, dayWeek, hour) {
 
-    $(idClientBtn).html(`<button type="button" class="btn btn-link" onclick="OpenModalDayWork('${dayNumber}','${dayWeek}','${hour}')">Reservar</button>`);
-    $(idClientPerson).html(`<b class="text-success">LIVRE</b>`);
+    const url = "/api/management/deletereservedtime";
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(code),  // Envia a string diretamente
+        success: function (data) {
+            console.log('Resposta do Backend:', data);
+
+            $(idClientBtn).html(`<button type="button" class="btn btn-link" onclick="OpenModalDayWork('${dayNumber}','${dayWeek}','${hour}')">Reservar</button>`);
+            $(idClientPerson).html(`<b class="text-success">LIVRE</b>`);
+
+        },
+        error: function (error) {
+            console.error('Erro:', error);
+        }
+    });
 }
 
 function ConvertDayToValue(day) {

@@ -17,5 +17,21 @@ namespace BarberShop.Application.BarberShop.Domain.Services
         {
             return settingsRepository.GetByType(typeSettings);
         }
+
+        // Sobreescrita do método Add
+        public new void Add(Settings settings)
+        {
+            // Lógica adicional, se necessário, antes de chamar o método da base
+            if (String.IsNullOrEmpty(settings.Code))
+            {
+                settings.Code = Guid.NewGuid().ToString();
+            }
+
+            // Chama o método Add da classe base
+            base.Add(settings);
+
+            // Lógica adicional, se necessário, após chamar o método da base
+            // ...
+        }
     }
 }

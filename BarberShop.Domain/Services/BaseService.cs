@@ -41,6 +41,4 @@ namespace BarberShop.Application.BarberShop.Domain.Services
             // Lógica adicional, se necessário
         }
     }
-
-
 }

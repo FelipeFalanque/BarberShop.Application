@@ -148,7 +148,7 @@ namespace BarberShop.Application.Controllers
         }
 
         [HttpGet]
-        [Route("/api/management/reservedtimes")]
+        [Route("/api/management/getreservedtimes")]
         public IActionResult GetReservedTimes()
         {
             var reservedtimes = _settingsService.GetByType(TypeSettings.ReservedTimes);
@@ -159,12 +159,22 @@ namespace BarberShop.Application.Controllers
         }
 
         [HttpPost]
-        [Route("/api/management/setreservedtime")]
-        public IActionResult ReservedTime([FromBody] ReservedTimeViewModel reservedTime)
+        [Route("/api/management/createreservedtime")]
+        public IActionResult CreateReservedTime([FromBody] ReservedTimeViewModel reservedTime)
         {
 
+            var reservedTimeDB = new Settings()
+            {
+                Code = Guid.NewGuid().ToString(),
+                Description = reservedTime.Description,
+                Start = reservedTime.Hour,
+                Identifier = Util.ConvertDayOfWeekPortugueseToEnglish(reservedTime.Day),
+                TypeSettings = TypeSettings.ReservedTimes,
+            };
 
-            return Ok("Sucesso");
+            _settingsService.Add(reservedTimeDB);
+
+            return Ok(reservedTimeDB.Code);
         }
 
         [HttpPost]
