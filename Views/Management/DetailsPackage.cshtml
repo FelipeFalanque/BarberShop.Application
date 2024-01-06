@@ -1,0 +1,11 @@
+﻿@using BarberShop.Application.Models;
+@model PackageViewModel
+
+
+    @Html.HiddenFor(f => f.Code)
+    <div class="mb-3">
+        <label for="inputName" class="form-label">Nome</label>
+        @Html.TextBoxFor(f => f.ClientName, new { @class = "form-control", autofocus = "", id = "inputName"})
+    </div>
+
+

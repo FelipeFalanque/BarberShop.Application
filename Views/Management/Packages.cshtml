@@ -1,5 +1,5 @@
 ﻿@using BarberShop.Application.Models;
-@model List<UserViewModel>
+@model List<PackageViewModel>
 
 <a class="btn btn-primary mb-2" asp-controller="Management" asp-action="CreateUser">Novo Cadastro</a>
 
@@ -7,20 +7,20 @@
     <thead>
         <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Celular</th>
-            <th scope="col">Cadastro</th>
+            <th scope="col">Dia da Semana</th>
+            <th scope="col">Horário</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @{
-            @foreach (UserViewModel user in Model)
+            @foreach (PackageViewModel package in Model)
             {
                 <tr>
-                    <td>@user.Name</td>
-                    <td>@user.Phone</td>
-                    <td>@user.RegistrationDate</td>
-                    <td><a class="btn btn-link" asp-controller="Management" asp-action="Details" asp-route-id="@user.Code">Detalhes</a></td>
+                    <td>@package.ClientName</td>
+                    <td>@package.DayWeek</td>
+                    <td>@string.Format("{0}:{1}", package.Hour, package.Minute)</td>
+                    <td><a class="btn btn-link" asp-controller="Management" asp-action="DetailsPackage" asp-route-id="@package.Code">Detalhes</a></td>
                 </tr>
             }
         }

@@ -14,11 +14,13 @@ namespace BarberShop.Application.Controllers
     {
         private readonly IUserService _userService;
         private readonly ISettingsService _settingsService;
+        private readonly IPackageService _packageService;
 
-        public ManagementController(IUserService userService, ISettingsService settingsService)
+        public ManagementController(IUserService userService, ISettingsService settingsService, IPackageService packageService)
         {
             _userService = userService;
             _settingsService = settingsService;
+            _packageService = packageService;
         }
         public IActionResult Home()
         {
@@ -100,10 +102,21 @@ namespace BarberShop.Application.Controllers
 
         public IActionResult Packages()
         {
-            return View();
+            var packages = _packageService.Get();
+            var packagesVW = packages.Select(e => new PackageViewModel(e)).ToList();
+
+            return View(packagesVW);
         }
 
-        public IActionResult CreatePackages()
+        [Route("/Management/DetailsPackage/{code}")]
+        public IActionResult DetailsPackage(string code)
+        {
+            var package = _packageService.Get(code);
+
+            return View(new PackageViewModel(package));
+        }
+        
+        public IActionResult CreatePackage()
         {
             return View();
         }

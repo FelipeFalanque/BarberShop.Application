@@ -10,7 +10,7 @@
 }
 
 <main class="form-signin w-100 m-auto">
-    <form method="post">
+    <form method="post" id="formLogin">
         <div class="grid text-center" style="--bs-rows: 3; --bs-columns: 3;">
             <div></div>
             <div class="g-start-2" style="grid-row: 2"><img class="mb-4 rounded-circle" src="~/imagens/logo.jpg" alt="logo" width="140px" height="140px" /></div>
@@ -24,8 +24,8 @@
             <label for="cellPhoneInput">Celular</label>
         </div>
         <div class="form-floating mb-2">
-            @Html.PasswordFor(f => f.Senha, new { @class = "form-control", autofocus = "", id="floatingPassword", placeholder="****" })
-            <label for="floatingPassword">Senha</label>
+            @Html.PasswordFor(f => f.Senha, new { @class = "form-control", autofocus = "", id="passwordInput", placeholder="****" })
+            <label for="passwordInput">Senha</label>
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <span class="mb-2 badge rounded-pill text-bg-warning">Dica de senha.  Ano de nascimento.</span>
@@ -53,3 +53,33 @@
 
     </form>
 </main>
+
+@section Scripts
+{
+    <script>
+
+        // Usando jQuery para manipular o evento de submissão
+        $(document).ready(function () {
+
+            $("#formLogin").submit(function (event) {
+                // Seu código aqui
+
+                let textLogin = $("#cellPhoneInput").val();
+                let textPassword = $("#passwordInput").val();
+
+                localStorage.setItem("textLogin", textLogin);
+                localStorage.setItem("textPassword", textPassword);
+
+                // Para impedir a submissão do formulário, use:
+                // event.preventDefault();
+            });
+
+            var textLoginLocal = localStorage.getItem("textLogin");
+            var textPasswordLocal = localStorage.getItem("textPassword");
+
+            if (textLoginLocal) $("#cellPhoneInput").val(textLoginLocal);
+            if (textPasswordLocal) $("#passwordInput").val(textPasswordLocal);
+        });
+
+    </script>
+}
